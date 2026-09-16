@@ -15,57 +15,68 @@ export default function PublicProfile() {
   }, [slug]);
 
   if (error) {
-    return <div className="max-w-3xl mx-auto px-6 py-16 text-sage-500">{error}</div>;
+    return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-ink-faint font-mono">{error}</div>;
   }
   if (!profile) {
-    return <div className="max-w-3xl mx-auto px-6 py-16 text-sage-500">Loading...</div>;
+    return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-ink-faint font-mono">Loading…</div>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <div className="bg-white rounded-3xl border border-sage-200 p-8 flex flex-col sm:flex-row gap-6">
-        <div className="w-28 h-28 rounded-full bg-sage-100 overflow-hidden shrink-0">
-          {profile.profile_photo_url && (
-            <img src={profile.profile_photo_url} alt={profile.full_name} className="w-full h-full object-cover" />
-          )}
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      <div className="border border-ink bg-paper-raised">
+        <div className="border-b border-rule px-6 py-2.5 flex items-baseline justify-between">
+          <span className="font-mono text-[11px] uppercase tracking-wide text-ink-soft">
+            Instructor credential
+          </span>
+          <span className="font-mono text-[11px] text-ink-faint">#{profile.slug.slice(0, 8)}</span>
         </div>
-        <div className="flex-1">
-          <p className="text-xs uppercase tracking-wide text-clay-600 font-medium">{profile.modality}</p>
-          <h1 className="text-3xl font-serif font-semibold text-sage-900 mt-1">{profile.full_name}</h1>
-          {profile.neighborhood && <p className="text-sage-500 text-sm mt-1">{profile.neighborhood}, Chicago</p>}
-
-          <div className="flex items-center gap-4 mt-4">
-            <div className="flex items-center gap-1 text-clay-500 text-lg">
-              {"★".repeat(Math.round(profile.average_rating))}
-              {"☆".repeat(5 - Math.round(profile.average_rating))}
-            </div>
-            <span className="text-sm text-sage-600">
-              {profile.average_rating > 0 ? profile.average_rating.toFixed(2) : "New"} · {profile.review_count} review
-              {profile.review_count === 1 ? "" : "s"}
-            </span>
+        <div className="p-8 flex flex-col sm:flex-row gap-6">
+          <div className="w-28 h-28 border border-rule bg-paper-sunken overflow-hidden shrink-0">
+            {profile.profile_photo_url && (
+              <img src={profile.profile_photo_url} alt={profile.full_name} className="w-full h-full object-cover" />
+            )}
           </div>
+          <div className="flex-1">
+            <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">
+              {profile.full_name}
+            </h1>
+            <p className="text-sm mt-1">
+              <span className="font-mono uppercase tracking-wide text-ledger-red text-[11px]">
+                {profile.modality}
+              </span>
+              {profile.neighborhood && <span className="text-ink-faint"> · {profile.neighborhood}, Chicago</span>}
+            </p>
 
-          <div className="flex flex-wrap gap-3 mt-4 text-sm">
-            {profile.website && (
-              <a href={profile.website} target="_blank" rel="noreferrer" className="text-clay-600 hover:underline">
-                Website
-              </a>
-            )}
-            {profile.instagram && (
-              <span className="text-sage-600">{profile.instagram}</span>
-            )}
-            {profile.contact_email && (
-              <a href={`mailto:${profile.contact_email}`} className="text-clay-600 hover:underline">
-                Contact
-              </a>
-            )}
+            <div className="flex items-baseline gap-3 mt-4">
+              <span className="font-mono text-3xl font-bold text-ink" data-numeral>
+                {profile.average_rating > 0 ? profile.average_rating.toFixed(2) : "—"}
+              </span>
+              <span className="font-mono text-sm text-ink-faint">/5</span>
+              <span className="text-sm text-ink-soft">
+                {profile.review_count} review{profile.review_count === 1 ? "" : "s"}
+              </span>
+            </div>
+
+            <div className="flex flex-wrap gap-4 mt-4 text-sm font-mono">
+              {profile.website && (
+                <a href={profile.website} target="_blank" rel="noreferrer" className="text-ledger-red hover:underline">
+                  Website
+                </a>
+              )}
+              {profile.instagram && <span className="text-ink-soft">{profile.instagram}</span>}
+              {profile.contact_email && (
+                <a href={`mailto:${profile.contact_email}`} className="text-ledger-red hover:underline">
+                  Contact
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {profile.bio && (
         <Section title="About">
-          <p className="text-sage-700 leading-relaxed">{profile.bio}</p>
+          <p className="text-ink-soft leading-relaxed">{profile.bio}</p>
         </Section>
       )}
 
@@ -77,7 +88,7 @@ export default function PublicProfile() {
 
       {profile.specialties.length > 0 && (
         <Section title="Specialties">
-          <ChipList items={profile.specialties} tone="clay" />
+          <ChipList items={profile.specialties} tone="red" />
         </Section>
       )}
 
@@ -89,9 +100,9 @@ export default function PublicProfile() {
 
       {profile.gallery.length > 0 && (
         <Section title="Gallery">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {profile.gallery.map((url) => (
-              <img key={url} src={url} alt="" className="rounded-xl aspect-square object-cover bg-sage-100" />
+              <img key={url} src={url} alt="" className="aspect-square object-cover bg-paper-sunken border border-rule" />
             ))}
           </div>
         </Section>
@@ -99,14 +110,17 @@ export default function PublicProfile() {
 
       <Section title="What students are saying">
         {profile.testimonials.length === 0 ? (
-          <p className="text-sage-400 text-sm">No published testimonials yet.</p>
+          <p className="text-ink-faint text-sm">No published testimonials yet.</p>
         ) : (
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-px bg-rule border border-rule">
             {profile.testimonials.map((t) => (
-              <div key={t.id} className="bg-white rounded-2xl border border-sage-200 p-4">
-                <div className="text-clay-500">{"★".repeat(t.overall_rating)}</div>
-                {t.favorite_aspect && <p className="text-sm text-sage-700 mt-2">"{t.favorite_aspect}"</p>}
-                <p className="text-xs text-sage-400 mt-2">— {t.display_name || "Anonymous student"}</p>
+              <div key={t.id} className="bg-paper-raised p-4">
+                <div className="flex items-baseline gap-1.5 font-mono">
+                  <span className="text-lg font-bold text-ink">{t.overall_rating}</span>
+                  <span className="text-xs text-ink-faint">/5</span>
+                </div>
+                {t.favorite_aspect && <p className="text-sm text-ink-soft mt-2">"{t.favorite_aspect}"</p>}
+                <p className="text-xs text-ink-faint mt-2 font-mono">— {t.display_name || "Anonymous student"}</p>
               </div>
             ))}
           </div>
@@ -116,7 +130,7 @@ export default function PublicProfile() {
       <div className="mt-10 text-center">
         <Link
           to={`/feedback/${profile.slug}`}
-          className="inline-block px-5 py-2.5 rounded-full bg-clay-500 text-white font-medium hover:bg-clay-600 transition"
+          className="stamp inline-block px-6 py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors"
         >
           Leave anonymous feedback
         </Link>
@@ -128,18 +142,20 @@ export default function PublicProfile() {
 function Section({ title, children }) {
   return (
     <div className="mt-8">
-      <h2 className="font-serif text-lg font-semibold text-sage-800 mb-3">{title}</h2>
+      <h2 className="font-mono text-xs uppercase tracking-wide text-ink-soft border-b border-rule pb-2 mb-4">
+        {title}
+      </h2>
       {children}
     </div>
   );
 }
 
-function ChipList({ items, tone = "sage" }) {
-  const chipClass = tone === "clay" ? "bg-clay-50 text-clay-700" : "bg-sage-100 text-sage-700";
+function ChipList({ items, tone = "ink" }) {
+  const chipClass = tone === "red" ? "border-ledger-red text-ledger-red" : "border-ink text-ink";
   return (
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
-        <span key={item} className={`text-sm px-3 py-1.5 rounded-full ${chipClass}`}>
+        <span key={item} className={`text-sm px-2.5 py-1 border ${chipClass}`}>
           {item}
         </span>
       ))}

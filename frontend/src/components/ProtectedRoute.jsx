@@ -5,7 +5,7 @@ export default function ProtectedRoute({ role, children }) {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="max-w-6xl mx-auto px-6 py-16 text-sage-500">Loading...</div>;
+    return <div className="max-w-6xl mx-auto px-6 py-16 text-ink-faint font-mono">Loading…</div>;
   }
   if (!user) {
     return <Navigate to="/login" replace />;

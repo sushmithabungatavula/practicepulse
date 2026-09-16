@@ -2,10 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  background: #F2F1ED;
+}
+
 body {
-  @apply bg-sage-50 text-sage-900;
+  @apply bg-paper text-ink font-sans;
+  font-feature-settings: "tnum" 1, "case" 1;
 }
 
 h1, h2, h3 {
-  font-family: "Fraunces", Georgia, serif;
+  @apply font-sans font-extrabold tracking-tightest;
+}
+
+.font-mono, [data-numeral] {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: #141311;
+  color: #F2F1ED;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #E8E6DF;
+}
+::-webkit-scrollbar-thumb {
+  background: #B9B6AA;
+  border: 3px solid #E8E6DF;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B877C;
+}
+
+*:focus-visible {
+  outline: 2px solid #A32E22;
+  outline-offset: 2px;
+}
+
+/* A stamped mark: slight rotation + irregular ink edge, never a clean vector rectangle. */
+.stamp {
+  position: relative;
+  transform: rotate(-2deg);
+}
+.stamp::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px 7px 4px 8px / 7px 4px 9px 3px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* The signature moment: a grade circle draws itself on, like a pen stroke. */
+.grade-stamp-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-stamp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes draw-stamp {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grade-stamp-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Ruled ledger background: faint horizontal rows, used sparingly as texture. */
+.bg-ledger-rule {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    #D9D6CC 31px,
+    #D9D6CC 32px
+  );
 }

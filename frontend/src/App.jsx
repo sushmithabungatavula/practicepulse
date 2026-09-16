@@ -51,8 +51,8 @@ export default function App() {
           />
         </Routes>
       </main>
-      <footer className="border-t border-sage-200 py-6 text-center text-xs text-sage-400">
-        PracticePulse — built for independent wellness instructors
+      <footer className="border-t border-rule py-6 text-center text-xs font-mono text-ink-faint">
+        PracticePulse — an operating ledger for independent wellness instructors
       </footer>
     </div>
   );

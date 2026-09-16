@@ -1,10 +1,16 @@
-export default function KPICard({ label, value, sub, accent = "sage" }) {
-  const accentClass = accent === "clay" ? "text-clay-600" : "text-sage-700";
+export default function KPICard({ label, value, sub, accent = false }) {
   return (
-    <div className="bg-white rounded-2xl border border-sage-200 p-5 shadow-sm">
-      <p className="text-xs uppercase tracking-wide text-sage-500 font-medium">{label}</p>
-      <p className={`text-3xl font-serif font-semibold mt-1 ${accentClass}`}>{value}</p>
-      {sub && <p className="text-xs text-sage-500 mt-1">{sub}</p>}
+    <div className="bg-paper-raised border border-rule p-4">
+      <p className="text-[11px] uppercase tracking-wide font-mono text-ink-soft border-b border-rule pb-2 mb-2">
+        {label}
+      </p>
+      <p
+        className={`font-mono text-3xl font-bold leading-none ${accent ? "text-ledger-red" : "text-ink"}`}
+        data-numeral
+      >
+        {value}
+      </p>
+      {sub && <p className="text-xs text-ink-faint mt-2 font-sans">{sub}</p>}
     </div>
   );
 }

@@ -17,25 +17,28 @@ export default function TagInput({ label, values, onChange, placeholder }) {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-sage-700 mb-1">{label}</label>
-      <div className="flex flex-wrap gap-2 mb-2">
+      <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-2">
+        {label}
+      </label>
+      <div className="flex flex-wrap gap-1.5 mb-2">
         {values.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1 bg-sage-100 text-sage-800 text-sm px-3 py-1 rounded-full"
+            className="inline-flex items-center gap-1.5 border border-ink text-ink text-sm px-2.5 py-1"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(tag)}
-              className="text-sage-500 hover:text-clay-600"
+              className="text-ink-faint hover:text-ledger-red leading-none"
+              aria-label={`Remove ${tag}`}
             >
-              ×
+              ✕
             </button>
           </span>
         ))}
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-0">
         <input
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
@@ -46,12 +49,12 @@ export default function TagInput({ label, values, onChange, placeholder }) {
             }
           }}
           placeholder={placeholder}
-          className="flex-1 rounded-lg border border-sage-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sage-400"
+          className="flex-1 border border-rule border-r-0 px-3 py-2 text-sm bg-paper-raised focus:outline-none focus:border-ink"
         />
         <button
           type="button"
           onClick={addTag}
-          className="px-3 py-2 text-sm rounded-lg border border-sage-300 text-sage-700 hover:bg-sage-50"
+          className="px-4 text-sm font-mono uppercase tracking-wide border border-ink text-ink hover:bg-ink hover:text-paper transition-colors"
         >
           Add
         </button>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
 export default function Login() {
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,48 +25,52 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-2xl font-serif font-semibold text-sage-900">Log in</h1>
-      <p className="text-sage-500 text-sm mt-1">Access your instructor dashboard or admin portal.</p>
+    <div className="max-w-md mx-auto px-4 sm:px-6 py-16">
+      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">Log in</h1>
+      <p className="text-ink-soft text-sm mt-1">Access your instructor ledger or admin portal.</p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5 border border-rule bg-paper-raised p-6">
         <div>
-          <label className="block text-sm font-medium text-sage-700 mb-1">Email</label>
+          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
+            Email
+          </label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
+            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-sage-700 mb-1">Password</label>
+          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
+            Password
+          </label>
           <input
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
+            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
           />
         </div>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
         <button
           type="submit"
           disabled={busy}
-          className="w-full py-2.5 rounded-full bg-clay-500 text-white font-medium hover:bg-clay-600 transition disabled:opacity-60"
+          className="stamp w-full py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
         >
-          {busy ? "Logging in..." : "Log in"}
+          {busy ? "Logging in…" : "Log in"}
         </button>
       </form>
 
-      <p className="text-sm text-sage-500 mt-6">
+      <p className="text-sm text-ink-soft mt-6">
         New here?{" "}
-        <Link to="/register" className="text-clay-600 font-medium">
+        <Link to="/register" className="text-ledger-red font-medium">
           Create an instructor account
         </Link>
       </p>
-      <p className="text-xs text-sage-400 mt-8 border-t border-sage-200 pt-4">
+      <p className="text-xs text-ink-faint mt-8 border-t border-rule pt-4 font-mono">
         Demo instructor login: maya@practicepulse.app / demo12345
       </p>
     </div>

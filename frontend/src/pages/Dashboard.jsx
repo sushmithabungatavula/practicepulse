@@ -18,6 +18,13 @@ import { Link } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend);
 
+const INK = "#141311";
+const RED = "#A32E22";
+const RULE = "#D9D6CC";
+const SOFT = "#524F47";
+
+const chartFont = { family: "Archivo", size: 11 };
+
 export default function Dashboard() {
   const { user } = useAuth();
   const [data, setData] = useState(null);
@@ -31,10 +38,10 @@ export default function Dashboard() {
   }, []);
 
   if (error) {
-    return <div className="max-w-6xl mx-auto px-6 py-16 text-red-600">{error}</div>;
+    return <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 text-ledger-red font-mono">{error}</div>;
   }
   if (!data) {
-    return <div className="max-w-6xl mx-auto px-6 py-16 text-sage-500">Loading dashboard...</div>;
+    return <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 text-ink-faint font-mono">Loading ledger…</div>;
   }
 
   const hasReviews = data.review_count > 0;
@@ -45,10 +52,13 @@ export default function Dashboard() {
       {
         label: "Average rating",
         data: data.monthly_trends.map((m) => m.average_rating),
-        borderColor: "#4a664b",
-        backgroundColor: "#4a664b33",
-        tension: 0.35,
-        fill: true,
+        borderColor: INK,
+        backgroundColor: "transparent",
+        pointBackgroundColor: RED,
+        pointBorderColor: RED,
+        pointRadius: 3,
+        borderWidth: 2,
+        tension: 0,
       },
     ],
   };
@@ -65,30 +75,38 @@ export default function Dashboard() {
           data.rating_breakdown.community,
           data.rating_breakdown.knowledge,
         ],
-        backgroundColor: "#bd6f40",
-        borderRadius: 6,
+        backgroundColor: INK,
+        borderRadius: 0,
+        barThickness: 28,
       },
     ],
   };
 
+  const chartOptions = {
+    scales: {
+      y: { min: 0, max: 5, ticks: { font: chartFont, color: SOFT }, grid: { color: RULE } },
+      x: { ticks: { font: chartFont, color: SOFT }, grid: { display: false } },
+    },
+    plugins: { legend: { display: false } },
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between flex-wrap gap-3">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div className="flex items-start justify-between flex-wrap gap-3 border-b border-ink pb-4">
         <div>
-          <h1 className="text-2xl font-serif font-semibold text-sage-900">
-            Welcome back, {user?.full_name?.split(" ")[0]}
+          <h1 className="text-2xl font-sans font-extrabold tracking-tightest text-ink">
+            {user?.full_name}
           </h1>
           {user?.status === "pending" && (
-            <p className="text-sm text-clay-600 mt-1">
-              Your account is pending admin approval. Your dashboard already works — your public
-              profile will go live once approved.
+            <p className="text-sm text-ledger-red font-mono mt-2">
+              Pending admin approval — your ledger already works; your public profile goes live once approved.
             </p>
           )}
         </div>
         {user?.slug && (
           <Link
             to={`/instructors/${user.slug}`}
-            className="text-sm px-4 py-2 rounded-full border border-sage-300 text-sage-700 hover:bg-white"
+            className="text-sm font-mono uppercase tracking-wide px-4 py-2 border border-ink text-ink hover:bg-ink hover:text-paper transition-colors"
           >
             View public profile
           </Link>
@@ -96,8 +114,8 @@ export default function Dashboard() {
       </div>
 
       {!hasReviews ? (
-        <div className="mt-10 bg-white rounded-2xl border border-sage-200 p-10 text-center">
-          <p className="text-sage-600">
+        <div className="mt-10 border border-rule bg-paper-raised p-10 text-center">
+          <p className="text-ink-soft">
             No feedback yet. Share your QR code with students after class to start collecting
             reviews.
           </p>
@@ -109,32 +127,40 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-rule border border-rule mt-8">
             <KPICard label="Average rating" value={data.average_rating.toFixed(2)} sub={`${data.review_count} reviews`} />
-            <KPICard label="Satisfaction rate" value={`${data.satisfaction_rate}%`} sub="Rated 4-5 stars" accent="clay" />
+            <KPICard label="Satisfaction rate" value={`${data.satisfaction_rate}%`} sub="Rated 4–5" accent />
             <KPICard label="Recommend rate" value={`${data.recommendation_rate}%`} sub={`NPS ${data.nps}`} />
             <KPICard
               label="Returning students"
               value={`${data.returning_student_rate}%`}
               sub={
                 data.review_growth_pct !== null
-                  ? `${data.review_growth_pct >= 0 ? "+" : ""}${data.review_growth_pct}% reviews vs prior 30 days`
-                  : "Review growth: n/a"
+                  ? `${data.review_growth_pct >= 0 ? "+" : ""}${data.review_growth_pct}% vs prior 30d`
+                  : "Growth: n/a"
               }
-              accent="clay"
+              accent
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6 mt-6">
-            <div className="lg:col-span-2 bg-white rounded-2xl border border-sage-200 p-6">
-              <h2 className="font-serif text-lg font-semibold text-sage-800 mb-4">Monthly rating trend</h2>
-              <Line data={trendData} options={{ scales: { y: { min: 0, max: 5 } }, plugins: { legend: { display: false } } }} />
+          <div className="grid lg:grid-cols-3 gap-px bg-rule border border-rule border-t-0 mt-0">
+            <div className="lg:col-span-2 bg-paper-raised p-6">
+              <h2 className="font-mono text-xs uppercase tracking-wide text-ink-soft border-b border-rule pb-2 mb-4">
+                Monthly rating trend
+              </h2>
+              <Line data={trendData} options={chartOptions} />
             </div>
-            <div className="bg-white rounded-2xl border border-sage-200 p-6 flex flex-col items-center justify-center">
-              <p className="text-xs uppercase tracking-wide text-sage-500 font-medium mb-2">Engagement score</p>
-              <p className="text-5xl font-serif font-semibold text-sage-800">{data.engagement_score}</p>
-              <p className="text-xs text-sage-500 mt-2 text-center">
-                Blend of satisfaction, recommendation, and retention (out of 100)
+            <div className="bg-paper-raised p-6 flex flex-col items-center justify-center text-center">
+              <p className="font-mono text-xs uppercase tracking-wide text-ink-soft mb-2">
+                Engagement score
+              </p>
+              <div className="stamp inline-block">
+                <p className="font-mono text-5xl font-bold text-ledger-red" data-numeral>
+                  {data.engagement_score}
+                </p>
+              </div>
+              <p className="text-xs text-ink-faint mt-3">
+                Satisfaction, recommendation, and retention — out of 100
               </p>
               {user?.slug && (
                 <div className="mt-6 w-full">
@@ -144,14 +170,16 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 mt-6">
-            <div className="bg-white rounded-2xl border border-sage-200 p-6">
-              <h2 className="font-serif text-lg font-semibold text-sage-800 mb-4">Experience breakdown</h2>
-              <Bar data={breakdownData} options={{ scales: { y: { min: 0, max: 5 } }, plugins: { legend: { display: false } } }} />
+          <div className="grid lg:grid-cols-2 gap-px bg-rule border border-rule border-t-0">
+            <div className="bg-paper-raised p-6">
+              <h2 className="font-mono text-xs uppercase tracking-wide text-ink-soft border-b border-rule pb-2 mb-4">
+                Experience breakdown
+              </h2>
+              <Bar data={breakdownData} options={chartOptions} />
             </div>
-            <div className="grid grid-rows-2 gap-6">
+            <div className="grid grid-rows-2 divide-y divide-rule">
               <ThemeList title="Most common positive themes" themes={data.positive_themes} />
-              <ThemeList title="Most requested improvements" themes={data.improvement_themes} tone="clay" />
+              <ThemeList title="Most requested improvements" themes={data.improvement_themes} tone="red" />
             </div>
           </div>
         </>
@@ -160,17 +188,20 @@ export default function Dashboard() {
   );
 }
 
-function ThemeList({ title, themes, tone = "sage" }) {
-  const chipClass = tone === "clay" ? "bg-clay-50 text-clay-700" : "bg-sage-50 text-sage-700";
+function ThemeList({ title, themes, tone = "ink" }) {
+  const chipClass =
+    tone === "red" ? "border-ledger-red text-ledger-red" : "border-ink text-ink";
   return (
-    <div className="bg-white rounded-2xl border border-sage-200 p-6">
-      <h3 className="font-serif text-base font-semibold text-sage-800 mb-3">{title}</h3>
+    <div className="bg-paper-raised p-6">
+      <h3 className="font-mono text-xs uppercase tracking-wide text-ink-soft border-b border-rule pb-2 mb-4">
+        {title}
+      </h3>
       {themes.length === 0 ? (
-        <p className="text-sm text-sage-400">Not enough data yet</p>
+        <p className="text-sm text-ink-faint">Not enough data yet</p>
       ) : (
         <div className="flex flex-wrap gap-2">
           {themes.map((t) => (
-            <span key={t.word} className={`text-xs px-3 py-1.5 rounded-full ${chipClass}`}>
+            <span key={t.word} className={`text-xs font-mono px-2.5 py-1 border ${chipClass}`}>
               {t.word} · {t.count}
             </span>
           ))}

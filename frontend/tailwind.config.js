@@ -2,36 +2,45 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
+    screens: {
+      xs: "420px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       colors: {
-        sage: {
-          50: "#f4f7f4",
-          100: "#e6ede6",
-          200: "#cddfcd",
-          300: "#a9c0a9",
-          400: "#7f9d7f",
-          500: "#5f8060",
-          600: "#4a664b",
-          700: "#3d523e",
-          800: "#334334",
-          900: "#2b382c",
+        // "The Ledger" — a graded operating ledger, not a wellness app.
+        // Restrained strategy: neutral ink/paper carry the surface; red is
+        // functional only (accounting's "in the red"), never decorative.
+        paper: {
+          DEFAULT: "#F2F1ED",
+          raised: "#FFFFFF",
+          sunken: "#E8E6DF",
         },
-        clay: {
-          50: "#fbf6f2",
-          100: "#f5e8de",
-          200: "#e9cdb7",
-          300: "#dcac89",
-          400: "#cd8a5f",
-          500: "#bd6f40",
-          600: "#a55834",
-          700: "#87442c",
-          800: "#6e3828",
-          900: "#5c2f24",
+        ink: {
+          DEFAULT: "#141311",
+          soft: "#524F47",
+          faint: "#6B675E",
+        },
+        rule: {
+          DEFAULT: "#D9D6CC",
+          strong: "#B9B6AA",
+        },
+        ledger: {
+          red: "#A32E22",
+          "red-soft": "#F4E4DF",
+          black: "#141311",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["'Fraunces'", "Georgia", "serif"],
+        sans: ["Archivo", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
     },
   },

@@ -34,6 +34,11 @@ uvicorn app.main:app --reload --port 8000
 On first startup this creates an admin account from `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env`
 (defaults: `admin@practicepulse.app` / `changeme123`).
 
+> **Port 8000 already in use?** Docker Desktop sometimes binds `localhost:8000` on this kind of
+> setup. If API calls silently 404, run `lsof -i :8000` to check what's listening, then either stop
+> it or run the backend on another port (`--port 8010`) and update the proxy target in
+> `frontend/vite.config.js` to match.
+
 Optional — seed a demo instructor with ~48 realistic feedback entries so the dashboard isn't empty:
 
 ```bash

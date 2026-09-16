@@ -4,6 +4,10 @@ import TagInput from "../components/TagInput.jsx";
 
 const MODALITIES = ["Yoga", "Meditation", "Breathwork", "Pilates", "Mindfulness"];
 
+const fieldClass =
+  "w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink";
+const labelClass = "block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5";
+
 export default function ProfileEditor() {
   const [profile, setProfile] = useState(null);
   const [saving, setSaving] = useState(false);
@@ -15,7 +19,7 @@ export default function ProfileEditor() {
   }, []);
 
   if (!profile) {
-    return <div className="max-w-3xl mx-auto px-6 py-16 text-sage-500">Loading...</div>;
+    return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-ink-faint font-mono">Loading…</div>;
   }
 
   const field = (key) => ({
@@ -41,20 +45,17 @@ export default function ProfileEditor() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      <h1 className="text-2xl font-serif font-semibold text-sage-900">Edit your profile</h1>
-      <p className="text-sage-500 text-sm mt-1">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">Edit your profile</h1>
+      <p className="text-ink-soft text-sm mt-1">
         This information appears on your public profile at /instructors/{profile.slug}
       </p>
 
-      <form onSubmit={handleSave} className="mt-8 space-y-6 bg-white rounded-2xl border border-sage-200 p-6">
+      <form onSubmit={handleSave} className="mt-8 space-y-6 border border-rule bg-paper-raised p-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Practice type</label>
-            <select
-              {...field("modality")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-            >
+            <label className={labelClass}>Practice type</label>
+            <select {...field("modality")} className={fieldClass}>
               {MODALITIES.map((m) => (
                 <option key={m} value={m}>
                   {m}
@@ -63,21 +64,17 @@ export default function ProfileEditor() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Neighborhood</label>
-            <input
-              {...field("neighborhood")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-              placeholder="e.g. Lincoln Park"
-            />
+            <label className={labelClass}>Neighborhood</label>
+            <input {...field("neighborhood")} className={fieldClass} placeholder="e.g. Lincoln Park" />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-sage-700 mb-1">Biography</label>
+          <label className={labelClass}>Biography</label>
           <textarea
             {...field("bio")}
             rows={5}
-            className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
+            className={fieldClass}
             placeholder="Tell students about your teaching style and background..."
           />
         </div>
@@ -109,54 +106,36 @@ export default function ProfileEditor() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Profile photo URL</label>
-            <input
-              {...field("profile_photo_url")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-              placeholder="https://..."
-            />
+            <label className={labelClass}>Profile photo URL</label>
+            <input {...field("profile_photo_url")} className={fieldClass} placeholder="https://..." />
           </div>
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Website</label>
-            <input
-              {...field("website")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-              placeholder="https://..."
-            />
+            <label className={labelClass}>Website</label>
+            <input {...field("website")} className={fieldClass} placeholder="https://..." />
           </div>
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Instagram</label>
-            <input
-              {...field("instagram")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-              placeholder="@handle"
-            />
+            <label className={labelClass}>Instagram</label>
+            <input {...field("instagram")} className={fieldClass} placeholder="@handle" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Contact email</label>
-            <input
-              {...field("contact_email")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-            />
+            <label className={labelClass}>Contact email</label>
+            <input {...field("contact_email")} className={fieldClass} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-sage-700 mb-1">Phone</label>
-            <input
-              {...field("phone")}
-              className="w-full rounded-lg border border-sage-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sage-400"
-            />
+            <label className={labelClass}>Phone</label>
+            <input {...field("phone")} className={fieldClass} />
           </div>
         </div>
 
-        {message && <p className="text-sm text-sage-600">{message}</p>}
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {message && <p className="text-sm text-ink font-mono">✓ {message}</p>}
+        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
 
         <button
           type="submit"
           disabled={saving}
-          className="px-5 py-2.5 rounded-full bg-clay-500 text-white font-medium hover:bg-clay-600 transition disabled:opacity-60"
+          className="stamp px-6 py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
         >
-          {saving ? "Saving..." : "Save profile"}
+          {saving ? "Saving…" : "Save profile"}
         </button>
       </form>
     </div>
