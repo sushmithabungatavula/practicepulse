@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Photo from "../components/Photo.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const HERO_CHECKS = [
   "Anonymous feedback",
@@ -78,6 +79,11 @@ const TESTIMONIALS = [
 ];
 
 export default function Landing() {
+  const { user } = useAuth();
+  if (user) {
+    return <Navigate to="/redirect" replace />;
+  }
+
   return (
     <div>
       {/* HERO */}

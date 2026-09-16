@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const MODALITIES = ["Yoga", "Meditation", "Breathwork", "Pilates", "Mindfulness"];
 
 export default function Register() {
-  const { register } = useAuth();
+  const { user, register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ full_name: "", email: "", password: "", modality: "Yoga" });
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  if (user) {
+    return <Navigate to="/redirect" replace />;
+  }
 
   const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
 
