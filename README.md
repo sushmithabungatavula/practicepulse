@@ -43,7 +43,7 @@ Optional — seed a demo instructor with ~48 realistic feedback entries so the d
 
 ```bash
 python -m app.seed_demo
-# creates maya@practicepulse.app / demo12345, public profile at /instructors/maya-chen
+# creates sush@practicepulse.app / demo12345, public profile at /instructors/sush
 ```
 
 ### 2. Frontend
@@ -97,4 +97,4 @@ AI-assisted sentiment summaries were intentionally left out as optional stretch 
 | Role | Email | Password |
 |---|---|---|
 | Admin | admin@practicepulse.app | changeme123 |
-| Instructor (approved, with sample data) | maya@practicepulse.app | demo12345 |
+| Instructor (approved, with sample data) | sush@practicepulse.app | demo12345 |

@@ -50,7 +50,7 @@ Product name is "PracticePulse." No existing logo, color system, or typographic 
 
 ## Evidence on Hand
 
-- No real customer logos, press, testimonials, or case studies exist; a seeded demo instructor ("Maya Chen," Chicago-based vinyasa/restorative teacher) with ~48 synthetic feedback entries is used for local/demo data only and must not be presented as a real testimonial or real usage evidence.
+- No real customer logos, press, testimonials, or case studies exist; a seeded demo instructor ("Sushmitha B.," Chicago-based vinyasa/restorative teacher) with ~48 synthetic feedback entries is used for local/demo data only and must not be presented as a real testimonial or real usage evidence.
 - No brand photography exists; gallery/profile-photo fields are empty by default (URL-based, instructor-supplied).
 
 ## Product Principles

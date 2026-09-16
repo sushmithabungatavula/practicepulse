@@ -71,7 +71,7 @@ export default function Login() {
         </Link>
       </p>
       <p className="text-xs text-ink-faint mt-8 border-t border-rule pt-4 font-mono">
-        Demo instructor login: maya@practicepulse.app / demo12345
+        Demo instructor login: sush@practicepulse.app / demo12345
       </p>
     </div>
   );

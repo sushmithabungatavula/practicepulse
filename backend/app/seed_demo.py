@@ -39,7 +39,7 @@ NEIGHBORHOODS = ["Lincoln Park", "Wicker Park", "Logan Square", "West Loop", "Hy
 def run():
     db = SessionLocal()
     try:
-        email = "maya@practicepulse.app"
+        email = "sush@practicepulse.app"
         existing = db.query(User).filter(User.email == email).first()
         if existing:
             print("Demo instructor already exists, skipping.")
@@ -48,7 +48,7 @@ def run():
         user = User(
             email=email,
             hashed_password=hash_password("demo12345"),
-            full_name="Maya Chen",
+            full_name="Sushmitha B.",
             role=UserRole.instructor,
             status=AccountStatus.approved,
         )
@@ -57,17 +57,17 @@ def run():
 
         profile = InstructorProfile(
             user_id=user.id,
-            slug=unique_slug(db, "Maya Chen"),
+            slug=unique_slug(db, "Sushmitha B."),
             modality="Yoga",
-            bio="Maya is a Chicago-based vinyasa and restorative yoga instructor with 8 years of "
-                "teaching experience, focused on building strength, breath awareness, and community.",
+            bio="Sushmitha is a Chicago-based vinyasa and restorative yoga instructor with 8 years "
+                "of teaching experience, focused on building strength, breath awareness, and community.",
             certifications=["RYT-500", "Yin Yoga Certified", "Trauma-Informed Yoga"],
             specialties=["Vinyasa Flow", "Restorative", "Breathwork", "Prenatal"],
             class_offerings=["Morning Flow", "Slow & Restorative", "Power Vinyasa", "Sunset Yin"],
             gallery=[],
             neighborhood="Lincoln Park",
-            website="https://mayachenyoga.example.com",
-            instagram="@mayachenyoga",
+            website="https://sushpractices.example.com",
+            instagram="@sushpractices",
             contact_email=email,
             phone="",
             profile_photo_url="",
