@@ -229,7 +229,6 @@ export default function Landing() {
             </span>
             <h2 className="text-3xl text-ink">Resources for running your practice</h2>
           </div>
-          <span className="text-sm font-semibold text-accent">View all →</span>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full mt-6">
           {ARTICLES.map((a) => (
@@ -281,32 +280,6 @@ export default function Landing() {
         </Link>
       </div>
 
-      {/* MAP + FORM */}
-      <div className="px-6 sm:px-12 lg:px-[72px] pb-20 grid lg:grid-cols-[1fr_420px] gap-6">
-        <div
-          className="rounded-3xl h-80 flex items-center justify-center text-ink-soft text-[13px] font-semibold tracking-wide"
-          style={{ background: "linear-gradient(135deg, #E7DCC3, #D8C9A6)" }}
-        >
-          MAP PLACEHOLDER — CHICAGO, IL
-        </div>
-        <div className="bg-white border border-rule rounded-3xl p-8 flex flex-col gap-3.5">
-          <span className="text-[13px] font-bold tracking-wider text-accent uppercase">Stay in touch</span>
-          <h3 className="text-xl text-ink">Get notified when we add your neighborhood</h3>
-          <input
-            type="text"
-            placeholder="Your name"
-            className="h-12 rounded-xl border border-rule bg-paper px-4 text-sm focus:outline-none focus:border-accent"
-          />
-          <input
-            type="email"
-            placeholder="Email address"
-            className="h-12 rounded-xl border border-rule bg-paper px-4 text-sm focus:outline-none focus:border-accent"
-          />
-          <button className="text-center py-3.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors">
-            Notify me
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

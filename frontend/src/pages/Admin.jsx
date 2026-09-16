@@ -45,8 +45,16 @@ export default function Admin() {
     loadAll();
   };
 
-  const exportCsv = () => {
-    window.open("/api/admin/export", "_blank");
+  const exportCsv = async () => {
+    const res = await client.get("/admin/export", { responseType: "blob" });
+    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "practicepulse_export.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
   };
 
   return (

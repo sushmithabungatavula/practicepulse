@@ -64,19 +64,20 @@ export default function App() {
           </div>
           <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
             <span className="text-white font-semibold mb-1">Product</span>
-            <Link to="/directory">Directory</Link>
-            <Link to="/login">Dashboard</Link>
-            <Link to="/register">Join</Link>
+            <Link to="/directory" className="hover:text-white transition-colors">Directory</Link>
+            <Link to="/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
+            <Link to="/register" className="hover:text-white transition-colors">Join</Link>
           </div>
           <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
             <span className="text-white font-semibold mb-1">Company</span>
-            <span>About</span>
-            <span>Contact</span>
-            <span>Admin</span>
+            <a href="mailto:hello@practicepulse.app" className="hover:text-white transition-colors">Contact</a>
+            <Link to="/admin" className="hover:text-white transition-colors">Admin</Link>
           </div>
           <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
             <span className="text-white font-semibold mb-1">Chicago, IL</span>
-            <span>hello@practicepulse.app</span>
+            <a href="mailto:hello@practicepulse.app" className="hover:text-white transition-colors">
+              hello@practicepulse.app
+            </a>
           </div>
         </div>
         <div className="max-w-6xl mx-auto w-full border-t border-white/10 pt-5 text-xs text-forest-soft/70">
