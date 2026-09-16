@@ -28,59 +28,49 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 sm:px-6 py-16">
-      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">
-        Create your instructor account
-      </h1>
-      <p className="text-ink-soft text-sm mt-1">
+    <div className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl text-ink">Create your instructor account</h1>
+      <p className="text-ink-soft text-sm mt-1.5">
         Your account is reviewed by an administrator before your public profile goes live.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5 border border-rule bg-paper-raised p-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-rule rounded-3xl p-7 shadow-sm">
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Full name
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Full name</label>
           <input
             required
             value={form.full_name}
             onChange={update("full_name")}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           />
         </div>
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Email
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Email</label>
           <input
             type="email"
             required
             value={form.email}
             onChange={update("email")}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           />
         </div>
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Password
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Password</label>
           <input
             type="password"
             required
             minLength={8}
             value={form.password}
             onChange={update("password")}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           />
         </div>
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Practice type
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Practice type</label>
           <select
             value={form.modality}
             onChange={update("modality")}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           >
             {MODALITIES.map((m) => (
               <option key={m} value={m}>
@@ -89,11 +79,11 @@ export default function Register() {
             ))}
           </select>
         </div>
-        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
+        {error && <p className="text-sm text-accent-dark">{error}</p>}
         <button
           type="submit"
           disabled={busy}
-          className="stamp w-full py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
+          className="w-full py-3.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors disabled:opacity-60"
         >
           {busy ? "Creating account…" : "Create account"}
         </button>
@@ -101,7 +91,7 @@ export default function Register() {
 
       <p className="text-sm text-ink-soft mt-6">
         Already have an account?{" "}
-        <Link to="/login" className="text-ledger-red font-medium">
+        <Link to="/login" className="text-accent font-semibold">
           Log in
         </Link>
       </p>

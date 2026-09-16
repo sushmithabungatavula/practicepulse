@@ -25,40 +25,36 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 sm:px-6 py-16">
-      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">Log in</h1>
-      <p className="text-ink-soft text-sm mt-1">Access your instructor ledger or admin portal.</p>
+    <div className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl text-ink">Log in</h1>
+      <p className="text-ink-soft text-sm mt-1.5">Access your instructor dashboard or admin portal.</p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5 border border-rule bg-paper-raised p-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-rule rounded-3xl p-7 shadow-sm">
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Email
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           />
         </div>
         <div>
-          <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5">
-            Password
-          </label>
+          <label className="block text-sm font-semibold text-ink mb-1.5">Password</label>
           <input
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink"
+            className="w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent"
           />
         </div>
-        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
+        {error && <p className="text-sm text-accent-dark">{error}</p>}
         <button
           type="submit"
           disabled={busy}
-          className="stamp w-full py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
+          className="w-full py-3.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors disabled:opacity-60"
         >
           {busy ? "Logging in…" : "Log in"}
         </button>
@@ -66,11 +62,11 @@ export default function Login() {
 
       <p className="text-sm text-ink-soft mt-6">
         New here?{" "}
-        <Link to="/register" className="text-ledger-red font-medium">
+        <Link to="/register" className="text-accent font-semibold">
           Create an instructor account
         </Link>
       </p>
-      <p className="text-xs text-ink-faint mt-8 border-t border-rule pt-4 font-mono">
+      <p className="text-xs text-ink-faint mt-8 border-t border-rule pt-4">
         Demo instructor login: sush@practicepulse.app / demo12345
       </p>
     </div>

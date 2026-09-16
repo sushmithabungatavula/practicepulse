@@ -78,63 +78,38 @@ const TESTIMONIALS = [
 
 export default function Landing() {
   return (
-    <div className="font-warm bg-warm-cream text-warm-ink">
-      {/* Warm storefront header — intentionally distinct from the app's Navbar */}
-      <div className="flex items-center justify-between px-6 sm:px-12 lg:px-[72px] py-6 border-b border-warm-rule">
-        <Link to="/" className="flex items-center gap-2.5">
-          <span className="text-xl">🌿</span>
-          <span className="font-display text-xl font-bold">PracticePulse</span>
-        </Link>
-        <div className="hidden lg:flex gap-9 text-[15px] font-medium text-warm-soft">
-          <Link to="/">Home</Link>
-          <Link to="/directory">Directory</Link>
-          <a href="#how-it-works">How it works</a>
-          <Link to="/register">For Instructors</Link>
-        </div>
-        <div className="flex items-center gap-3.5">
-          <Link to="/login" className="hidden sm:inline text-[15px] font-medium text-warm-soft">
-            Log in
-          </Link>
-          <Link
-            to="/register"
-            className="px-5 sm:px-6 py-3 rounded-full bg-warm-accent text-white text-sm font-semibold hover:bg-warm-accent-dark transition-colors"
-          >
-            Join as instructor
-          </Link>
-        </div>
-      </div>
-
+    <div>
       {/* HERO */}
       <div className="grid lg:grid-cols-[1fr_560px] gap-10 px-6 sm:px-12 lg:px-[72px] pt-14 pb-20 items-center">
         <div className="flex flex-col gap-5 max-w-xl">
-          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+          <span className="text-[13px] font-bold tracking-wider text-accent uppercase">
             Welcome to PracticePulse
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl leading-[1.12] font-semibold text-[#201B15]">
-            Know how your classes are <em className="text-warm-accent not-italic italic">really</em> landing.
+          <h1 className="text-4xl sm:text-5xl leading-[1.12] text-ink">
+            Know how your classes are <em className="text-accent not-italic italic">really</em> landing.
           </h1>
-          <p className="text-base leading-relaxed text-warm-soft max-w-md">
+          <p className="text-base leading-relaxed text-ink-soft max-w-md">
             Anonymous client feedback, a business-intelligence dashboard, and a public reputation
             profile — built for independent yoga, meditation, and wellness instructors.
           </p>
           <div className="flex flex-wrap gap-4 mt-1.5">
             <Link
               to="/register"
-              className="px-7 py-4 rounded-full bg-warm-accent text-white text-[15px] font-semibold hover:bg-warm-accent-dark transition-colors"
+              className="px-7 py-4 rounded-full bg-accent text-white text-[15px] font-semibold hover:bg-accent-dark transition-colors"
             >
               Create your ledger
             </Link>
             <Link
               to="/directory"
-              className="px-7 py-4 rounded-full bg-warm-ink text-white text-[15px] font-semibold hover:bg-black transition-colors"
+              className="px-7 py-4 rounded-full bg-ink text-white text-[15px] font-semibold hover:bg-black transition-colors"
             >
               Browse instructors
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-x-7 gap-y-2.5 mt-3.5">
             {HERO_CHECKS.map((label) => (
-              <div key={label} className="flex items-center gap-2 text-sm text-warm-soft">
-                <span className="w-[18px] h-[18px] rounded-full bg-warm-accent text-white text-[11px] flex items-center justify-center shrink-0">
+              <div key={label} className="flex items-center gap-2 text-sm text-ink-soft">
+                <span className="w-[18px] h-[18px] rounded-full bg-accent text-white text-[11px] flex items-center justify-center shrink-0">
                   ✓
                 </span>
                 {label}
@@ -147,12 +122,12 @@ export default function Landing() {
           <img
             src="https://images.pexels.com/photos/2280200/pexels-photo-2280200.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Silhouette of a yogi in a dynamic pose at golden hour"
-            className="absolute top-0 left-8 w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover shadow-2xl border-8 border-warm-cream"
+            className="absolute top-0 left-8 w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover shadow-2xl border-8 border-paper"
           />
           <img
             src="https://images.pexels.com/photos/8436589/pexels-photo-8436589.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Small group practicing yoga together in a sunlit studio"
-            className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 object-cover shadow-2xl border-8 border-warm-cream"
+            className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 object-cover shadow-2xl border-8 border-paper"
             style={{ borderRadius: "46% 54% 60% 40% / 50% 45% 55% 50%" }}
           />
           <div
@@ -160,7 +135,7 @@ export default function Landing() {
             style={{ background: "linear-gradient(200deg, #F1D9A8, #DDAF6C)" }}
           />
           <div className="absolute top-[46%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white flex items-center justify-center text-center p-3.5 shadow-xl z-10">
-            <span className="font-display text-xs font-bold leading-snug text-[#201B15]">
+            <span className="font-display text-xs font-bold leading-snug text-ink">
               Every rating tells a story
             </span>
           </div>
@@ -169,16 +144,16 @@ export default function Landing() {
 
       {/* MODALITY CARDS */}
       <div className="px-6 sm:px-12 lg:px-[72px] pt-2 pb-20 flex flex-col items-center gap-2.5 text-center">
-        <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+        <span className="text-[13px] font-bold tracking-wider text-accent uppercase">
           Built for every modality
         </span>
-        <h2 className="font-display text-3xl font-semibold mb-7">Practices we support</h2>
+        <h2 className="text-3xl mb-7">Practices we support</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 w-full">
           {MODALITIES.map((m) => (
-            <div key={m.name} className="bg-white rounded-[22px] overflow-hidden border border-warm-rule text-left">
+            <div key={m.name} className="bg-white rounded-[22px] overflow-hidden border border-rule text-left">
               <img src={m.photo} alt={m.alt} className="w-full h-32 object-cover" />
               <div className="px-4 pt-4 pb-5">
-                <span className="text-[15px] font-semibold">{m.name}</span>
+                <span className="text-[15px] font-semibold text-ink">{m.name}</span>
               </div>
             </div>
           ))}
@@ -188,23 +163,23 @@ export default function Landing() {
       {/* DARK QUALITY SECTION */}
       <div
         id="how-it-works"
-        className="bg-warm-forest px-6 sm:px-12 lg:px-[72px] py-20 grid lg:grid-cols-[1fr_520px] gap-14 items-center"
+        className="bg-forest px-6 sm:px-12 lg:px-[72px] py-20 grid lg:grid-cols-[1fr_520px] gap-14 items-center"
       >
-        <div className="flex flex-col gap-5 text-[#EDE6D5]">
-          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+        <div className="flex flex-col gap-5 text-forest-soft">
+          <span className="text-[13px] font-bold tracking-wider text-accent uppercase">
             Why instructors switch
           </span>
-          <h2 className="font-display text-3xl font-semibold text-white leading-snug">
+          <h2 className="text-3xl text-white leading-snug">
             We give you the full picture, not just a star rating.
           </h2>
-          <p className="text-[15px] leading-relaxed text-[#C9C1AF] max-w-md">
+          <p className="text-[15px] leading-relaxed text-forest-soft max-w-md">
             PracticePulse turns scattered feedback into an operating habit — a dashboard you
             actually check, not a review site you hope someone visits.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-3.5 mt-2">
             {QUALITY_CHECKS.map((label) => (
-              <div key={label} className="flex items-start gap-2.5 text-sm text-[#EDE6D5]">
-                <span className="w-5 h-5 rounded-md bg-warm-accent text-white text-xs flex items-center justify-center shrink-0 mt-px">
+              <div key={label} className="flex items-start gap-2.5 text-sm text-forest-soft">
+                <span className="w-5 h-5 rounded-md bg-accent text-white text-xs flex items-center justify-center shrink-0 mt-px">
                   ✓
                 </span>
                 {label}
@@ -213,7 +188,7 @@ export default function Landing() {
           </div>
           <Link
             to="/directory"
-            className="self-start mt-3 px-7 py-3.5 rounded-full bg-warm-accent text-white text-[15px] font-semibold hover:bg-warm-accent-dark transition-colors"
+            className="self-start mt-3 px-7 py-3.5 rounded-full bg-accent text-white text-[15px] font-semibold hover:bg-accent-dark transition-colors"
           >
             See a sample dashboard
           </Link>
@@ -227,18 +202,18 @@ export default function Landing() {
               className="w-11 h-11 rounded-full object-cover"
             />
             <div className="flex flex-col">
-              <span className="text-[13px] font-semibold">Sushmitha B. · Yoga</span>
-              <span className="text-[11px] text-warm-faint">Lincoln Park, Chicago</span>
+              <span className="text-[13px] font-semibold text-ink">Sushmitha B. · Yoga</span>
+              <span className="text-[11px] text-ink-faint">Lincoln Park, Chicago</span>
             </div>
-            <span className="ml-auto text-[11px] font-bold text-warm-accent bg-[#FCE8DD] px-2.5 py-1 rounded-full">
+            <span className="ml-auto text-[11px] font-bold text-accent bg-accent-soft px-2.5 py-1 rounded-full">
               LIVE DEMO
             </span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {DEMO_STATS.map((s) => (
-              <div key={s.label} className="bg-warm-cream rounded-2xl p-4">
-                <span className="font-display text-[26px] font-bold text-[#201B15]">{s.value}</span>
-                <div className="text-xs text-warm-faint mt-1">{s.label}</div>
+              <div key={s.label} className="bg-paper rounded-2xl p-4">
+                <span className="font-display text-[26px] font-bold text-ink">{s.value}</span>
+                <div className="text-xs text-ink-faint mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -249,20 +224,20 @@ export default function Landing() {
       <div className="px-6 sm:px-12 lg:px-[72px] pt-20 pb-2 flex flex-col gap-2.5">
         <div className="flex items-end justify-between flex-wrap gap-4">
           <div className="flex flex-col gap-2.5">
-            <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+            <span className="text-[13px] font-bold tracking-wider text-accent uppercase">
               From the journal
             </span>
-            <h2 className="font-display text-3xl font-semibold">Resources for running your practice</h2>
+            <h2 className="text-3xl text-ink">Resources for running your practice</h2>
           </div>
-          <span className="text-sm font-semibold text-warm-accent">View all →</span>
+          <span className="text-sm font-semibold text-accent">View all →</span>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full mt-6">
           {ARTICLES.map((a) => (
-            <div key={a.title} className="bg-white border border-warm-rule rounded-[22px] overflow-hidden text-left">
+            <div key={a.title} className="bg-white border border-rule rounded-[22px] overflow-hidden text-left">
               <img src={a.photo} alt={a.alt} className="w-full h-[170px] object-cover" />
               <div className="p-5 flex flex-col gap-2.5">
-                <span className="text-xs text-warm-faint font-semibold">{a.tag}</span>
-                <h3 className="text-[17px] font-semibold leading-snug">{a.title}</h3>
+                <span className="text-xs text-ink-faint font-semibold">{a.tag}</span>
+                <h3 className="text-[17px] font-semibold leading-snug text-ink">{a.title}</h3>
               </div>
             </div>
           ))}
@@ -271,36 +246,36 @@ export default function Landing() {
 
       {/* TESTIMONIALS */}
       <div className="px-6 sm:px-12 lg:px-[72px] py-20 flex flex-col items-center gap-2.5 text-center">
-        <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+        <span className="text-[13px] font-bold tracking-wider text-accent uppercase">
           Cultivating growth, grace &amp; gratitude
         </span>
-        <h2 className="font-display text-3xl font-semibold mb-1.5 max-w-xl">
+        <h2 className="text-3xl mb-1.5 max-w-xl text-ink">
           What students are saying (sample demo data)
         </h2>
         <div className="grid sm:grid-cols-3 gap-5 w-full mt-6">
           {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="bg-white border border-warm-rule rounded-[22px] p-6 text-left flex flex-col gap-3.5">
-              <span className="text-xl text-warm-accent">{t.stars}</span>
-              <p className="text-sm leading-relaxed text-warm-soft m-0">"{t.quote}"</p>
-              <span className="text-[13px] font-semibold">— {t.name}</span>
+            <div key={t.name} className="bg-white border border-rule rounded-[22px] p-6 text-left flex flex-col gap-3.5">
+              <span className="text-xl text-accent">{t.stars}</span>
+              <p className="text-sm leading-relaxed text-ink-soft m-0">"{t.quote}"</p>
+              <span className="text-[13px] font-semibold text-ink">— {t.name}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* CTA BANNER */}
-      <div className="mx-6 sm:mx-12 lg:mx-[72px] mb-20 bg-warm-forest rounded-[28px] px-8 sm:px-16 py-12 flex flex-col sm:flex-row items-center justify-between gap-8">
+      <div className="mx-6 sm:mx-12 lg:mx-[72px] mb-20 bg-forest rounded-[28px] px-8 sm:px-16 py-12 flex flex-col sm:flex-row items-center justify-between gap-8">
         <div className="flex flex-col gap-2.5 max-w-lg text-center sm:text-left">
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-white">
+          <h2 className="text-2xl sm:text-3xl text-white">
             Ready to see how your classes are really landing?
           </h2>
-          <p className="text-sm text-[#C9C1AF]">
+          <p className="text-sm text-forest-soft">
             Join independent instructors across Chicago already collecting feedback with PracticePulse.
           </p>
         </div>
         <Link
           to="/register"
-          className="px-8 py-4 rounded-full bg-warm-accent text-white text-[15px] font-semibold whitespace-nowrap hover:bg-warm-accent-dark transition-colors"
+          className="px-8 py-4 rounded-full bg-accent text-white text-[15px] font-semibold whitespace-nowrap hover:bg-accent-dark transition-colors"
         >
           Get started free
         </Link>
@@ -309,60 +284,27 @@ export default function Landing() {
       {/* MAP + FORM */}
       <div className="px-6 sm:px-12 lg:px-[72px] pb-20 grid lg:grid-cols-[1fr_420px] gap-6">
         <div
-          className="rounded-3xl h-80 flex items-center justify-center text-warm-soft text-[13px] font-semibold tracking-wide"
+          className="rounded-3xl h-80 flex items-center justify-center text-ink-soft text-[13px] font-semibold tracking-wide"
           style={{ background: "linear-gradient(135deg, #E7DCC3, #D8C9A6)" }}
         >
           MAP PLACEHOLDER — CHICAGO, IL
         </div>
-        <div className="bg-white border border-warm-rule rounded-3xl p-8 flex flex-col gap-3.5">
-          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">Stay in touch</span>
-          <h3 className="font-display text-xl font-semibold">Get notified when we add your neighborhood</h3>
+        <div className="bg-white border border-rule rounded-3xl p-8 flex flex-col gap-3.5">
+          <span className="text-[13px] font-bold tracking-wider text-accent uppercase">Stay in touch</span>
+          <h3 className="text-xl text-ink">Get notified when we add your neighborhood</h3>
           <input
             type="text"
             placeholder="Your name"
-            className="h-12 rounded-xl border border-warm-rule bg-warm-cream px-4 text-sm focus:outline-none focus:border-warm-accent"
+            className="h-12 rounded-xl border border-rule bg-paper px-4 text-sm focus:outline-none focus:border-accent"
           />
           <input
             type="email"
             placeholder="Email address"
-            className="h-12 rounded-xl border border-warm-rule bg-warm-cream px-4 text-sm focus:outline-none focus:border-warm-accent"
+            className="h-12 rounded-xl border border-rule bg-paper px-4 text-sm focus:outline-none focus:border-accent"
           />
-          <button className="text-center py-3.5 rounded-full bg-warm-accent text-white text-sm font-semibold hover:bg-warm-accent-dark transition-colors">
+          <button className="text-center py-3.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors">
             Notify me
           </button>
-        </div>
-      </div>
-
-      {/* FOOTER */}
-      <div className="bg-warm-forest px-6 sm:px-12 lg:px-[72px] pt-14 pb-9 flex flex-col gap-9">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8">
-          <div className="flex flex-col gap-3">
-            <span className="font-display text-xl font-bold text-white">🌿 PracticePulse</span>
-            <span className="text-[13px] text-[#A9A08E] max-w-xs leading-relaxed">
-              An operating ledger for independent wellness instructors, built for Chicago's practice
-              community.
-            </span>
-          </div>
-          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
-            <span className="text-white font-semibold mb-1">Product</span>
-            <Link to="/directory">Directory</Link>
-            <Link to="/login">Dashboard</Link>
-            <Link to="/register">Join</Link>
-          </div>
-          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
-            <span className="text-white font-semibold mb-1">Company</span>
-            <span>About</span>
-            <span>Contact</span>
-            <span>Admin</span>
-          </div>
-          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
-            <span className="text-white font-semibold mb-1">Chicago, IL</span>
-            <span>hello@practicepulse.app</span>
-          </div>
-        </div>
-        <div className="border-t border-white/10 pt-5 text-xs text-warm-faint">
-          © 2026 PracticePulse. Demo content and photography are sample/stock placeholders. Photos
-          via Pexels.
         </div>
       </div>
     </div>

@@ -1,246 +1,207 @@
 ---
 name: PracticePulse
-description: A graded operating ledger for independent wellness instructors — not a wellness app.
+description: A warm, professional reputation & feedback platform for independent wellness instructors.
 colors:
-  paper: "#F2F1ED"
+  paper: "#FBF6ED"
   paper-raised: "#FFFFFF"
-  paper-sunken: "#E8E6DF"
-  ink: "#141311"
-  ink-soft: "#524F47"
-  ink-faint: "#6B675E"
-  rule: "#D9D6CC"
-  rule-strong: "#B9B6AA"
-  ledger-red: "#A32E22"
-  ledger-red-soft: "#F4E4DF"
+  paper-sunken: "#F0E6D3"
+  ink: "#201B15"
+  ink-soft: "#6B6255"
+  ink-faint: "#786F60"
+  rule: "#EFE4D2"
+  rule-strong: "#DDAF6C"
+  accent: "#E2522C"
+  accent-dark: "#C4562C"
+  accent-soft: "#FCE8DD"
+  forest: "#14302A"
+  forest-soft: "#C9C1AF"
 typography:
   display:
-    fontFamily: "Archivo, system-ui, sans-serif"
-    fontWeight: 800
-    letterSpacing: "-0.04em"
+    fontFamily: "'Playfair Display', Georgia, serif"
+    fontWeight: 600
   body:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Poppins, system-ui, sans-serif"
     fontWeight: 400
-  numeral:
-    fontFamily: "'JetBrains Mono', ui-monospace, monospace"
-    fontWeight: 700
-    fontFeatureSettings: "tnum 1"
-  label:
-    fontFamily: "'JetBrains Mono', ui-monospace, monospace"
-    fontSize: "11px"
-    letterSpacing: "0.05em"
-    textTransform: "uppercase"
 rounded:
-  none: "0px"
-spacing:
-  hairline: "1px"
+  sm: "0.75rem"
+  md: "1rem"
+  lg: "1.5rem"
+  xl: "1.75rem"
+  full: "9999px"
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.none}"
-    padding: "12px 24px"
+    backgroundColor: "{colors.accent}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.full}"
+    padding: "16px 28px"
   button-primary-hover:
-    backgroundColor: "{colors.ledger-red}"
+    backgroundColor: "{colors.accent-dark}"
   button-secondary:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-  kpi-card:
+    backgroundColor: "{colors.ink}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.full}"
+  card:
     backgroundColor: "{colors.paper-raised}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
+    rounded: "{rounded.lg}"
 ---
 
 # Design System: PracticePulse
 
 ## Overview
 
-**Creative North Star: "The Ledger"**
+**Creative North Star: "The Warm Studio"**
 
-PracticePulse refuses to look like a wellness app. Every independent-instructor product in this
-category defaults to the same look — a warm cream ground, an airy serif display face, rounded
-pill buttons, soft drop-shadowed cards, lotus/zen iconography — because the category reads as
-"soft, calming, spa-adjacent." This system is built on the opposite instinct: the product's real
-job is business intelligence for a working professional, so it borrows its visual grammar from a
-graded business report — a state-of-the-studio ledger an instructor would actually keep. Every
-number reads like a ledger entry (monospace, tabular). Every rating is a literal graded mark, not
-a star. Every approval is a stamp, not a colored badge. The one accent color is used the way
-accounting uses red ink — functionally, for negative or flagged states — never decoratively.
+PracticePulse presents as a warm, human, professionally-run wellness practice — the visual
+opposite of a cold SaaS dashboard. Cream paper grounds, one confident terracotta accent, deep
+forest-green for contrast sections, Playfair Display headlines paired with Poppins body text, real
+photography, and soft rounded shapes everywhere (buttons are full pills, cards are large-radius
+rounded rectangles, never a sharp corner). One system, used identically on every route — the
+marketing Landing page and every signed-in screen (Dashboard, Admin, forms) share the same tokens,
+the same header, and the same footer.
 
-This was chosen through Impeccable's concept-roll process (direction 3 of 7 grounded candidates,
-seed `0b771ea1`) against six catalog challengers; the strongest challenger — a recording-studio
-VU-meter-bridge world — was judged competitive but not adopted for this build, in favor of the
-Ledger's broader legibility across a mostly task-first (Operate-mode) app.
+**History.** This is the second visual system this app shipped. The first, "The Ledger," was a
+deliberately austere ink-on-paper system (zero radius, monospace numerals, no serif) chosen
+specifically to avoid the warm-cream-plus-serif look common to wellness-app templates. On
+2026-09-16 the user was shown that outcome, asked for a specific warm reference template's look on
+the Landing page anyway, confirmed after being told this reversed the earlier direction, and then
+asked for the same warm system applied consistently everywhere. The Ledger's tokens and components
+were removed rather than kept dormant — there is one design system in this codebase, not two.
 
 **Key characteristics:**
-- Restrained color strategy: near-monochrome ink-on-paper, with one functional red accent
-- Zero border-radius everywhere — sharp corners read as "document," not "app"
-- Monospace numerals carry the display weight typically given to a display serif
-- A hand-drawn "stamp" motif (rotated border, circled grade) is the system's signature interaction
-
-**Exception: the public Landing page (`/`).** On 2026-09-16 the user explicitly asked, after being
-told this reverses the Ledger direction, for the public marketing page specifically to match a
-pasted reference screenshot — a warm-cream, terracotta-accent, forest-green, serif-display
-template. That page (`frontend/src/pages/Landing.jsx`) runs on its own separate `warm.*` Tailwind
-tokens and `font-display`/`font-warm` faces (Playfair Display + Poppins), defined alongside but
-never merged into the tokens above, and renders its own header/footer instead of the shared
-`Navbar`/app footer. Every other route — including the instant a visitor clicks "Log in" or "Join"
-from that page — is on The Ledger as documented below. Do not extend the warm palette to any other
-route without the same kind of explicit, informed override; do not quietly migrate The Ledger
-toward warm tones because the Landing page sits next to it.
+- Warm, human palette: cream ground, terracotta accent used generously (not just functionally),
+  deep forest-green for high-contrast sections (dark "why switch" block, CTA banners, footer)
+- Soft, rounded shapes everywhere: full-pill buttons, large-radius cards (`rounded-2xl`/`3xl`),
+  circular avatars and photo crops
+- Playfair Display carries every heading (set globally via the `h1, h2, h3` base rule); Poppins
+  carries body/UI text
+- Real sourced photography (Pexels, URLs verified to resolve) on the Landing page; other surfaces
+  use color/typography only, no photography needed
+- Star ratings (not the earlier system's numeral-grading mechanic) for anything rating-related
 
 ## Colors
 
-Near-monochrome and paper-based, deliberately cool rather than warm/cream, with exactly one
-functional accent.
+Warm and inviting rather than neutral-cool; one accent used with real presence, not rationed.
 
 ### Primary
-- **Ink** (`#141311`): the only "brand color" in the system. Carries headlines, primary buttons,
-  primary numerals, borders that need to read as structural (not decorative).
+- **Terracotta accent** (`#E2522C`): primary buttons, links, active states, star fills, the one
+  color that "is" the brand. Used generously — CTA buttons, nav "Join" button, active tab
+  underline, price/stat highlights.
+
+### Secondary
+- **Forest green** (`#14302A`): full-bleed contrast sections — the "why instructors switch" panel,
+  CTA banners, and the site footer. Never used for small UI elements, only large background
+  regions with light text on top.
 
 ### Neutral
-- **Paper** (`#F2F1ED`): page background. Cool, neutral off-white — chosen specifically to avoid
-  the "warm cream ground" that AI-generated interfaces default to.
-- **Paper Raised** (`#FFFFFF`): card/panel surfaces sitting on the page ground; the only depth cue
-  in the system (no shadows).
-- **Paper Sunken** (`#E8E6DF`): image/avatar placeholder wells, subtly recessed.
-- **Ink Soft** (`#524F47`): secondary body text (subheads, descriptions). Contrast ratio 7.2:1 on
-  paper.
-- **Ink Faint** (`#6B675E`): tertiary text (captions, counts, timestamps). Contrast ratio 5.0:1 on
-  paper — deliberately kept at/above the 4.5:1 floor for small text.
-- **Rule** (`#D9D6CC`): hairline dividers and default input/card borders.
-- **Rule Strong** (`#B9B6AA`): scrollbar thumb, stronger dividers.
-
-### Functional (not decorative)
-- **Ledger Red** (`#A32E22`): reserved for grading marks, flags, negative states, and the one
-  primary hover treatment. Contrast ratio 6.3:1 on paper.
-- **Ledger Red Soft** (`#F4E4DF`): reserved tint for red-adjacent surfaces (currently unused in
-  built screens; kept for future negative-state banners).
+- **Paper** (`#FBF6ED`): page background, cream.
+- **Paper Raised** (`#FFFFFF`): cards/panels sitting on the page.
+- **Paper Sunken** (`#F0E6D3`): avatar/image placeholder wells.
+- **Ink** (`#201B15`): primary text, near-black with a warm cast.
+- **Ink Soft** (`#6B6255`): secondary body text. 5.6:1 contrast on paper.
+- **Ink Faint** (`#786F60`): tertiary text (captions, counts). 4.6:1 contrast on paper — kept at or
+  above the accessibility floor deliberately after an earlier faint value failed at 2.9:1.
+- **Rule** (`#EFE4D2`): borders, dividers, input strokes.
 
 ### Named Rules
-**The In-The-Red Rule.** Red is never a "brand accent." It appears only where it functions as a
-literal accounting/grading mark: a selected grade circle, a flagged review, a rejected account, a
-hover state on an action that "stamps" something. If a use of red can't be described as marking
-something graded, approved, or flagged, it's the wrong color.
+**The One Accent Rule.** Terracotta is the only saturated accent in the system. It is allowed to
+be generous (every primary CTA, every active state) precisely because nothing else competes with
+it — no second or third accent color, no rainbow of status colors. Green/red semantic coloring
+(e.g. for admin approve/reject) is deliberately avoided in favor of ink/accent/faint text-only
+distinctions, so the one accent keeps its meaning.
 
 ## Typography
 
-**Display / Body Font:** Archivo (with system-ui, sans-serif fallback)
-**Numeral Font:** JetBrains Mono (with ui-monospace, monospace fallback)
+**Display Font:** Playfair Display (with Georgia, serif fallback)
+**Body Font:** Poppins (with system-ui, sans-serif fallback)
 
-**Character:** One grotesk carries every headline and every sentence of body copy — deliberately
-*not* paired with a display serif, which is the category's most common "premium" tell (see
-Don'ts). JetBrains Mono is reserved entirely for numbers: KPI values, ratings, dates, counts. The
-pairing reads as "measured" rather than "designed to look elegant."
+**Character:** A classic editorial serif for headlines paired with a warm, rounded, highly
+legible grotesk for everything else — the pairing named directly in the reference the user
+provided, chosen for approachability over the previous system's deliberately clinical mono/grotesk
+pairing.
 
 ### Hierarchy
-- **Display** (Archivo, 800, `text-5xl`–`text-6xl`, `-0.04em` tracking, `leading-[0.98]`): page
-  H1s on Persuade surfaces (Landing hero).
-- **Headline** (Archivo, 800, `text-2xl`–`text-3xl`, `-0.04em` tracking): page H1s on Operate
-  surfaces (Dashboard, Admin, forms, profile pages).
-- **Numeral — hero** (JetBrains Mono, 700, `text-5xl`–`text-6xl`, tabular figures): the single
-  dominant stat in a panel (Landing sample ledger, engagement score, average rating).
-- **Numeral — data** (JetBrains Mono, 700, `text-lg`–`text-3xl`, tabular figures): KPI card
-  values, chart-adjacent figures, table cells.
-- **Label** (JetBrains Mono, 500, 11px, `0.05em` tracking, uppercase): field labels, masthead
-  captions, tab labels, chip text. Never sits directly above a page heading (see Don'ts).
-- **Body** (Archivo, 400, `text-sm`–`text-base`): paragraph copy, max measure ~60ch on prose
-  blocks.
-
-### Named Rules
-**The No-Serif Rule.** No serif face ships anywhere in this system. The category default pairs a
-grotesk body with a high-contrast serif display for "editorial gravitas"; this system gets its
-gravitas from monospace ledger numerals instead. A future contributor adding a serif "for
-elegance" is reintroducing the exact rut this system was built to refuse.
+- **Display / Headline** (Playfair Display, 600, `text-2xl`–`text-5xl`): set globally via the
+  `h1, h2, h3` base rule in `index.css` — pages do not need to repeat the font family on every
+  heading.
+- **Stat numerals** (Playfair Display, bold, `text-3xl`–`text-5xl`): KPI values, engagement score,
+  average rating — uses the display face rather than a separate mono face.
+- **Body** (Poppins, 400, `text-sm`–`text-base`): paragraph copy, form labels use 600 weight.
+- **Label/eyebrow** (Poppins, 700, `text-[13px]`, tracked uppercase, accent color): section
+  eyebrows on the Landing page only (e.g. "WHY INSTRUCTORS SWITCH"); not used as a kicker directly
+  atop a page's main H1 on app screens, where the heading leads on its own.
 
 ## Layout
 
-Single-column content max-width `max-w-3xl`–`max-w-6xl` depending on surface density, centered,
-`px-4 sm:px-6` gutters. Grids of repeated data (KPI rows, directory listings, admin tables) use
-`gap-px bg-rule` so the gap itself renders as a hairline rule between cells, rather than a gap plus
-separately-bordered cards — this is the system's main "ledger sheet" structural device. Custom
-breakpoint `xs: 420px` is added below Tailwind's default `sm` specifically so cards/forms with a
-label-plus-control row (grade selectors, nav) can stack before `sm`'s 640px, since the earliest
-squeeze point on a real phone happens well under 640px.
+Single-column content, `max-w-md` (forms) to `max-w-6xl` (dashboards/directory), centered, generous
+`px-6`–`px-[72px]` gutters that scale with breakpoint. Repeated data (KPI rows, directory listings)
+uses a real `gap-4` grid of individually-rounded, individually-bordered cards — not a hairline-rule
+grid. A custom `xs: 420px` breakpoint stacks label-plus-control rows (star rating rows, nav) before
+Tailwind's default `sm` (640px), since that's where a real phone first gets tight.
 
 ## Elevation & Depth
 
-No shadows anywhere in the system. Depth is conveyed by exactly two devices: (1) a background
-value shift (`paper` → `paper-raised` white) for anything "on top of" the page, and (2) a 1px
-`rule`-colored border. This is a deliberate rejection of the soft-drop-shadow card language the
-category defaults to.
-
-### Named Rules
-**The Flat Ledger Rule.** If a component needs to look "raised," give it a white fill and a
-hairline border, never a shadow. The one sanctioned exception is the `.stamp` utility (rotation +
-irregular double-border), which reads as a physical ink stamp, not elevation.
+Soft, real drop shadows are back (unlike the predecessor system, which was intentionally flat).
+`shadow-sm` on form cards, `shadow-md`/`shadow-2xl` on hero imagery and elevated panels (the dark
+section's white stat card). Depth reads as "lifted paper," not "printed document."
 
 ## Shapes
 
-Border-radius is `0` everywhere except two intentional exceptions: the QR-code image itself (kept
-square, no radius either, for the record) and nothing else — every button, input, card, chip, and
-avatar well is a hard rectangle. The one curved form in the system is the hand-drawn circle SVG
-path in `GradeSelector`, which is deliberately imperfect/organic (a Catmull-Rom-style wobble, not
-a true circle) to read as drawn-on rather than vector-perfect.
+Rounded, generously: `rounded-full` on every button and pill/chip, `rounded-xl` on inputs,
+`rounded-2xl`–`rounded-3xl` on cards and panels, `rounded-full` on avatars. No sharp corners
+anywhere in the system — this is the clearest visual signal distinguishing it from the predecessor
+system, which was zero-radius everywhere.
 
 ## Components
 
 ### Buttons
-- **Shape:** hard rectangle, `0` radius.
-- **Primary:** `bg-ink text-paper`, `px-6 py-3`, uppercase JetBrains Mono label, wrapped in the
-  `.stamp` utility (slight rotation + offset double border) on the highest-intent actions (submit,
-  primary CTA). Hover: `bg-ledger-red`.
-- **Secondary:** transparent fill, `border border-ink`, same label treatment. Hover: inverts to
-  `bg-ink text-paper`.
+- **Shape:** `rounded-full` always.
+- **Primary:** `bg-accent text-white`, hover `bg-accent-dark`.
+- **Secondary (dark):** `bg-ink text-white`, used for a page's second CTA (e.g. "Browse
+  instructors" beside "Create your ledger").
+- **Ghost/outline:** `border border-rule`, hover inverts to `bg-accent text-white border-accent`.
 
-### Grade Selector (signature component)
-A row of five JetBrains Mono numerals (1–5); selecting one draws a hand-circled red mark around it
-via an animated SVG stroke (`stroke-dasharray`/`stroke-dashoffset`, 0.32s ease-out, respects
-`prefers-reduced-motion`). Replaces a conventional star-rating widget system-wide — stars never
-appear anywhere in this product. Stacks label-above-control below the `xs` breakpoint.
+### Star rating (signature component)
+`GradeSelector` renders five outlined stars (`stroke` SVG, `text-rule-strong`); clicking fills
+stars up to that value with `fill-accent text-accent`, plus a small hover scale. Used for every
+rating input in the product; testimonial/review displays elsewhere use the same visual language as
+literal `★`/`☆` characters at matching sizes.
 
-### Chips / Tags
-- **Style:** `border border-ink` (or `border-ledger-red` for a "flagged" semantic), no fill, no
-  radius, small JetBrains Mono or Archivo text depending on context.
-
-### Cards / Containers ("ledger panels")
-- **Corner Style:** `0` radius, always.
-- **Background:** `paper-raised` (white) on the `paper` page ground.
-- **Border:** `1px solid` `rule` (default) or `ink` (masthead-style panels: hero sample ledger,
-  public-profile credential card).
-- **Internal Padding:** `p-4`–`p-6` depending on density.
+### Cards / Containers
+- **Corner style:** `rounded-2xl` to `rounded-3xl`.
+- **Background:** `paper-raised` (white) on the `paper` page ground, or plain `white` with a
+  `border-rule` stroke and `shadow-sm` for form cards.
+- **Internal padding:** `p-5`–`p-8` depending on density.
 
 ### Inputs / Fields
-- **Style:** `border border-rule`, `0` radius, `bg-paper` fill (not white — inputs sit visually
-  "in" the page, not "on" a card).
-- **Focus:** border darkens to `ink`; global `:focus-visible` outline is `2px solid ledger-red`.
+- **Style:** `rounded-xl`, `border border-rule`, `bg-paper` fill.
+- **Focus:** border becomes `accent`.
 
 ### Navigation
-JetBrains Mono uppercase labels, `whitespace-nowrap`, wraps onto a second row (`flex-wrap`) rather
-than truncating or hiding behind a hamburger menu below `sm`. Wordmark is a bordered "PP" mono mark
-plus the full wordmark, both always visible (no icon-only collapse).
+One shared `Navbar` component, used on every route including the Landing page (no separate
+marketing header). Logo + wordmark on the left, links + auth state in the center/right, primary
+action ("Join as instructor") as a filled accent pill. Sticky, cream translucent background with a
+bottom hairline. A single shared footer (`App.jsx`) — dark forest-green, Product/Company/Chicago
+columns — renders on every route.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** render every number in JetBrains Mono with tabular figures — this is the system's most
-  load-bearing typographic rule.
-- **Do** use `gap-px bg-rule` grids for repeated data instead of individually-bordered, shadowed
-  cards.
-- **Do** keep red strictly functional (grading, flags, negative states, one hover treatment) — see
-  the In-The-Red Rule.
-- **Do** stack label-above-control on any row that pairs a text label with a multi-item control
-  below the `xs` (420px) breakpoint.
+- **Do** use Playfair Display for every heading via the global `h1, h2, h3` rule — don't repeat the
+  font-family utility class on individual headings.
+- **Do** keep terracotta as the only saturated accent color in the system — see the One Accent
+  Rule.
+- **Do** use `rounded-full` on every button and chip, `rounded-2xl`+ on every card.
+- **Do** use the shared `Navbar`/footer on every route, including Landing — one header, one footer,
+  everywhere.
 
 ### Don't:
-- **Don't** add a serif face, anywhere, for any reason — see the No-Serif Rule.
-- **Don't** place a small uppercase label directly above a page heading (a "kicker"/"eyebrow").
-  This was shipped across nine surfaces in the first pass of this redesign and removed in the
-  finish review; the heading must lead. The one sanctioned exception is a bordered "stamp" object
-  (a discrete graphic mark, not a typographic label) directly above a confirmation heading, such as
-  the "Recorded" stamp on the feedback thank-you screen.
-- **Don't** use star icons, unicode or otherwise, for ratings — use the Grade Selector / graded
-  numeral display instead.
-- **Don't** add a drop shadow to a card for "elevation" — see the Flat Ledger Rule.
-- **Don't** round a corner. If a component needs to look softer, that's a signal it doesn't belong
-  in this system, not a cue to add `rounded-*`.
+- **Don't** reintroduce a monospace face, zero-radius shapes, or a second accent color — those
+  belonged to the retired Ledger system and reintroducing pieces of it (a mono numeral here, a
+  sharp-cornered card there) fragments the system back into two.
+- **Don't** add a kicker/eyebrow label directly above a page's main heading on Operate-mode
+  screens (Dashboard, Admin, forms) — the heading leads. Eyebrows are reserved for Landing-page
+  section intros, where they're a deliberate editorial device, not a crutch.
+- **Don't** invent a second dark color or a green/red semantic-status palette — admin
+  approve/reject/suspend actions use text-only ink/accent/faint distinctions, not colored badges
+  beyond the one accent.

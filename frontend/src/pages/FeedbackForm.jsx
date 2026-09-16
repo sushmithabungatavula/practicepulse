@@ -34,8 +34,8 @@ const initialState = {
 };
 
 const fieldClass =
-  "w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink";
-const rowClass = "border border-rule bg-paper-raised p-4";
+  "w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent";
+const rowClass = "border border-rule bg-white rounded-2xl p-5";
 
 export default function FeedbackForm() {
   const { slug } = useParams();
@@ -52,7 +52,7 @@ export default function FeedbackForm() {
     e.preventDefault();
     setError("");
     if (missingRating) {
-      setError("Please grade every category before submitting.");
+      setError("Please rate every category before submitting.");
       return;
     }
     setBusy(true);
@@ -68,13 +68,11 @@ export default function FeedbackForm() {
 
   if (submitted) {
     return (
-      <div className="max-w-xl mx-auto px-4 sm:px-6 py-24 text-center">
-        <div className="stamp inline-block border-2 border-ink px-6 py-3">
-          <p className="font-mono text-sm uppercase tracking-wide text-ink">Recorded</p>
+      <div className="max-w-xl mx-auto px-6 py-24 text-center">
+        <div className="inline-block w-16 h-16 rounded-full bg-accent-soft text-accent text-3xl flex items-center justify-center">
+          ✓
         </div>
-        <h1 className="text-2xl font-sans font-extrabold tracking-tightest text-ink mt-6">
-          Thank you.
-        </h1>
+        <h1 className="text-2xl text-ink mt-6">Thank you.</h1>
         <p className="text-ink-soft mt-3">
           Your anonymous feedback has been logged and will help your instructor improve future
           classes.
@@ -84,11 +82,9 @@ export default function FeedbackForm() {
   }
 
   return (
-    <div className="max-w-xl mx-auto px-4 sm:px-6 py-12">
-      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">
-        How was class today?
-      </h1>
-      <p className="text-ink-soft text-sm mt-1">
+    <div className="max-w-xl mx-auto px-6 py-12">
+      <h1 className="text-3xl text-ink">How was class today?</h1>
+      <p className="text-ink-soft text-sm mt-1.5">
         No account required — completely anonymous, takes about a minute.
       </p>
 
@@ -106,7 +102,7 @@ export default function FeedbackForm() {
         <div className={rowClass}>
           <label className="text-sm font-medium text-ink mb-3 block">
             How likely are you to recommend this instructor to a friend?{" "}
-            <span className="font-mono text-ledger-red">{form.recommend_score}/10</span>
+            <span className="font-semibold text-accent">{form.recommend_score}/10</span>
           </label>
           <input
             type="range"
@@ -114,7 +110,7 @@ export default function FeedbackForm() {
             max={10}
             value={form.recommend_score}
             onChange={(e) => setForm({ ...form, recommend_score: Number(e.target.value) })}
-            className="w-full accent-ledger-red"
+            className="w-full accent-accent"
           />
         </div>
 
@@ -144,14 +140,14 @@ export default function FeedbackForm() {
               type="checkbox"
               checked={form.is_returning_student}
               onChange={(e) => setForm({ ...form, is_returning_student: e.target.checked })}
-              className="accent-ink w-4 h-4"
+              className="accent-accent w-4 h-4"
             />
             I've taken this instructor's class before
           </label>
         </div>
 
         <div className={`${rowClass} space-y-4`}>
-          <p className="text-[11px] uppercase tracking-wide font-mono text-ink-faint">Optional</p>
+          <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide">Optional</p>
           <div>
             <label className="block text-sm text-ink mb-1.5">Experience level</label>
             <select
@@ -196,7 +192,7 @@ export default function FeedbackForm() {
               type="checkbox"
               checked={form.consent_to_publish}
               onChange={(e) => setForm({ ...form, consent_to_publish: e.target.checked })}
-              className="accent-ink w-4 h-4"
+              className="accent-accent w-4 h-4"
             />
             I'm comfortable having my "favorite aspect" comment shown publicly as a testimonial
           </label>
@@ -215,12 +211,12 @@ export default function FeedbackForm() {
           )}
         </div>
 
-        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
+        {error && <p className="text-sm text-accent-dark">{error}</p>}
 
         <button
           type="submit"
           disabled={busy}
-          className="stamp w-full py-3.5 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
+          className="w-full py-4 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors disabled:opacity-60"
         >
           {busy ? "Submitting…" : "Submit feedback"}
         </button>

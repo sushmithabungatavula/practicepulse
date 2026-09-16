@@ -5,8 +5,8 @@ import TagInput from "../components/TagInput.jsx";
 const MODALITIES = ["Yoga", "Meditation", "Breathwork", "Pilates", "Mindfulness"];
 
 const fieldClass =
-  "w-full border border-rule px-3 py-2.5 bg-paper focus:outline-none focus:border-ink";
-const labelClass = "block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1.5";
+  "w-full rounded-xl border border-rule px-4 py-3 bg-paper focus:outline-none focus:border-accent";
+const labelClass = "block text-sm font-semibold text-ink mb-1.5";
 
 export default function ProfileEditor() {
   const [profile, setProfile] = useState(null);
@@ -19,7 +19,7 @@ export default function ProfileEditor() {
   }, []);
 
   if (!profile) {
-    return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-ink-faint font-mono">Loading…</div>;
+    return <div className="max-w-3xl mx-auto px-6 py-16 text-ink-faint">Loading…</div>;
   }
 
   const field = (key) => ({
@@ -45,13 +45,13 @@ export default function ProfileEditor() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <h1 className="text-3xl font-sans font-extrabold tracking-tightest text-ink">Edit your profile</h1>
-      <p className="text-ink-soft text-sm mt-1">
+    <div className="max-w-3xl mx-auto px-6 py-12">
+      <h1 className="text-3xl text-ink">Edit your profile</h1>
+      <p className="text-ink-soft text-sm mt-1.5">
         This information appears on your public profile at /instructors/{profile.slug}
       </p>
 
-      <form onSubmit={handleSave} className="mt-8 space-y-6 border border-rule bg-paper-raised p-6">
+      <form onSubmit={handleSave} className="mt-8 space-y-6 bg-white border border-rule rounded-3xl p-7 shadow-sm">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Practice type</label>
@@ -127,13 +127,13 @@ export default function ProfileEditor() {
           </div>
         </div>
 
-        {message && <p className="text-sm text-ink font-mono">✓ {message}</p>}
-        {error && <p className="text-sm text-ledger-red font-mono">{error}</p>}
+        {message && <p className="text-sm text-accent font-semibold">✓ {message}</p>}
+        {error && <p className="text-sm text-accent-dark">{error}</p>}
 
         <button
           type="submit"
           disabled={saving}
-          className="stamp px-6 py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors disabled:opacity-60"
+          className="px-7 py-3.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-dark transition-colors disabled:opacity-60"
         >
           {saving ? "Saving…" : "Save profile"}
         </button>

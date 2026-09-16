@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Landing from "./pages/Landing.jsx";
@@ -13,12 +13,9 @@ import Directory from "./pages/Directory.jsx";
 import Admin from "./pages/Admin.jsx";
 
 export default function App() {
-  const location = useLocation();
-  const isLanding = location.pathname === "/";
-
   return (
     <div className="min-h-screen flex flex-col">
-      {!isLanding && <Navbar />}
+      <Navbar />
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -54,11 +51,38 @@ export default function App() {
           />
         </Routes>
       </main>
-      {!isLanding && (
-        <footer className="border-t border-rule py-6 text-center text-xs font-mono text-ink-faint">
-          PracticePulse — an operating ledger for independent wellness instructors
-        </footer>
-      )}
+      <footer className="bg-forest px-6 sm:px-12 lg:px-[72px] pt-14 pb-9 flex flex-col gap-9">
+        <div className="max-w-6xl mx-auto w-full grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8">
+          <div className="flex flex-col gap-3">
+            <span className="font-display text-xl font-bold text-white flex items-center gap-2">
+              🌿 PracticePulse
+            </span>
+            <span className="text-[13px] text-forest-soft max-w-xs leading-relaxed">
+              An operating ledger for independent wellness instructors, built for Chicago's practice
+              community.
+            </span>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
+            <span className="text-white font-semibold mb-1">Product</span>
+            <Link to="/directory">Directory</Link>
+            <Link to="/login">Dashboard</Link>
+            <Link to="/register">Join</Link>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
+            <span className="text-white font-semibold mb-1">Company</span>
+            <span>About</span>
+            <span>Contact</span>
+            <span>Admin</span>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-forest-soft">
+            <span className="text-white font-semibold mb-1">Chicago, IL</span>
+            <span>hello@practicepulse.app</span>
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto w-full border-t border-white/10 pt-5 text-xs text-forest-soft/70">
+          © 2026 PracticePulse — an operating ledger for independent wellness instructors.
+        </div>
+      </footer>
     </div>
   );
 }

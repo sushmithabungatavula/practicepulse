@@ -17,20 +17,18 @@ export default function TagInput({ label, values, onChange, placeholder }) {
 
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-2">
-        {label}
-      </label>
+      <label className="block text-sm font-semibold text-ink mb-2">{label}</label>
       <div className="flex flex-wrap gap-1.5 mb-2">
         {values.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1.5 border border-ink text-ink text-sm px-2.5 py-1"
+            className="inline-flex items-center gap-1.5 bg-accent-soft text-accent-dark text-sm px-3 py-1.5 rounded-full"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(tag)}
-              className="text-ink-faint hover:text-ledger-red leading-none"
+              className="text-accent-dark/70 hover:text-accent-dark leading-none"
               aria-label={`Remove ${tag}`}
             >
               ✕
@@ -38,7 +36,7 @@ export default function TagInput({ label, values, onChange, placeholder }) {
           </span>
         ))}
       </div>
-      <div className="flex gap-0">
+      <div className="flex gap-2">
         <input
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
@@ -49,12 +47,12 @@ export default function TagInput({ label, values, onChange, placeholder }) {
             }
           }}
           placeholder={placeholder}
-          className="flex-1 border border-rule border-r-0 px-3 py-2 text-sm bg-paper-raised focus:outline-none focus:border-ink"
+          className="flex-1 rounded-xl border border-rule px-4 py-2.5 text-sm bg-paper-raised focus:outline-none focus:border-accent"
         />
         <button
           type="button"
           onClick={addTag}
-          className="px-4 text-sm font-mono uppercase tracking-wide border border-ink text-ink hover:bg-ink hover:text-paper transition-colors"
+          className="px-5 text-sm font-semibold rounded-xl border border-rule text-ink hover:bg-accent hover:text-white hover:border-accent transition-colors"
         >
           Add
         </button>
