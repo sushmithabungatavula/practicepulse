@@ -52,7 +52,7 @@ export default function AISummaryCard() {
 
       {status === "done" && summary && (
         <div className="mt-5 space-y-5">
-          <p className="text-sm text-ink-soft leading-relaxed">{summary.result.summary}</p>
+          <p className="text-sm text-ink-soft leading-relaxed max-w-2xl">{summary.result.summary}</p>
 
           <SentimentBar sentiment={summary.result.sentiment} />
 
