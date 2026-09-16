@@ -270,21 +270,23 @@ export default function Landing() {
       </div>
 
       {/* CTA BANNER */}
-      <div className="mx-6 sm:mx-12 lg:mx-[72px] mb-20 bg-forest rounded-[28px] px-8 sm:px-16 py-12 flex flex-col sm:flex-row items-center justify-between gap-8">
-        <div className="flex flex-col gap-2.5 max-w-lg text-center sm:text-left">
-          <h2 className="text-2xl sm:text-3xl text-white">
-            Ready to see how your classes are really landing?
-          </h2>
-          <p className="text-sm text-forest-soft">
-            Join independent instructors across Chicago already collecting feedback with PracticePulse.
-          </p>
+      <div className="px-6 sm:px-12 lg:px-[72px] mb-20">
+        <div className="max-w-[1200px] mx-auto bg-forest rounded-[28px] px-8 sm:px-16 py-12 flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col gap-2.5 max-w-lg text-center sm:text-left">
+            <h2 className="text-2xl sm:text-3xl text-white">
+              Ready to see how your classes are really landing?
+            </h2>
+            <p className="text-sm text-forest-soft">
+              Join independent instructors across Chicago already collecting feedback with PracticePulse.
+            </p>
+          </div>
+          <Link
+            to="/register"
+            className="px-8 py-4 rounded-full bg-accent text-white text-[15px] font-semibold whitespace-nowrap hover:bg-accent-dark transition-colors"
+          >
+            Get started free
+          </Link>
         </div>
-        <Link
-          to="/register"
-          className="px-8 py-4 rounded-full bg-accent text-white text-[15px] font-semibold whitespace-nowrap hover:bg-accent-dark transition-colors"
-        >
-          Get started free
-        </Link>
       </div>
 
     </div>
