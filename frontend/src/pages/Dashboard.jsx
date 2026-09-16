@@ -14,6 +14,7 @@ import client from "../api/client.js";
 import { useAuth } from "../context/AuthContext.jsx";
 import KPICard from "../components/KPICard.jsx";
 import QRCodeCard from "../components/QRCodeCard.jsx";
+import AISummaryCard from "../components/AISummaryCard.jsx";
 import { Link } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend);
@@ -170,6 +171,10 @@ export default function Dashboard() {
               <ThemeList title="Most common positive themes" themes={data.positive_themes} />
               <ThemeList title="Most requested improvements" themes={data.improvement_themes} tone="accent" />
             </div>
+          </div>
+
+          <div className="mt-4">
+            <AISummaryCard />
           </div>
         </>
       )}

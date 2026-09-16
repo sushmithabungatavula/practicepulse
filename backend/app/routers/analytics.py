@@ -1,10 +1,13 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.ai_summary import AISummaryError, NotEnoughFeedback, generate_summary
 from app.database import get_db
 from app.deps import get_current_instructor
 from app.models import Feedback, User
-from app.schemas import AnalyticsResponse
+from app.schemas import AISummaryResponse, AnalyticsResponse
 from app.utils.analytics import (
     build_monthly_trends,
     compute_engagement_score,
@@ -80,4 +83,31 @@ def my_analytics(user: User = Depends(get_current_instructor), db: Session = Dep
         positive_themes=[dict(t) for t in positive_themes],
         improvement_themes=[dict(t) for t in improvement_themes],
         class_popularity=[dict(t) for t in class_popularity],
+    )
+
+
+@router.post("/me/ai-summary", response_model=AISummaryResponse)
+def generate_ai_summary(user: User = Depends(get_current_instructor), db: Session = Depends(get_db)):
+    """On-demand only - never called automatically. Costs real money per click."""
+    if not user.profile:
+        raise HTTPException(status_code=404, detail="Profile not found")
+
+    entries = (
+        db.query(Feedback)
+        .filter(Feedback.instructor_id == user.profile.id, Feedback.is_removed.is_(False))
+        .order_by(Feedback.created_at.desc())
+        .all()
+    )
+
+    try:
+        result, reviews_analyzed = generate_summary(entries)
+    except NotEnoughFeedback as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except AISummaryError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    return AISummaryResponse(
+        result=result,
+        reviews_analyzed=reviews_analyzed,
+        generated_at=datetime.utcnow(),
     )

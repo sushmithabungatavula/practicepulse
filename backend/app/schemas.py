@@ -199,6 +199,32 @@ class AnalyticsResponse(BaseModel):
     class_popularity: list[ThemeCount]
 
 
+# ---------- AI summary (on-demand, Claude API) ----------
+
+class AISentimentBreakdown(BaseModel):
+    positive_pct: int = Field(ge=0, le=100)
+    neutral_pct: int = Field(ge=0, le=100)
+    negative_pct: int = Field(ge=0, le=100)
+
+
+class AITheme(BaseModel):
+    label: str
+    quote: str
+
+
+class AISummaryResult(BaseModel):
+    summary: str
+    sentiment: AISentimentBreakdown
+    positive_themes: list[AITheme]
+    improvement_themes: list[AITheme]
+
+
+class AISummaryResponse(BaseModel):
+    result: AISummaryResult
+    reviews_analyzed: int
+    generated_at: datetime
+
+
 # ---------- Admin ----------
 
 class AdminInstructorRow(BaseModel):

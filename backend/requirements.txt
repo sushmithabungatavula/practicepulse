@@ -11,3 +11,4 @@ python-dotenv==1.0.1
 # Optional: only needed if DATABASE_URL points at Postgres instead of the default SQLite.
 # psycopg[binary]==3.2.3
 email-validator==2.2.0
+anthropic>=0.69.0
