@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import client from "../api/client.js";
+import Photo from "../components/Photo.jsx";
 
 export default function Directory() {
   const [instructors, setInstructors] = useState([]);
@@ -59,11 +60,7 @@ export default function Directory() {
               className="bg-white border border-rule rounded-3xl p-5 hover:shadow-md hover:border-accent transition"
             >
               <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-full bg-paper overflow-hidden shrink-0">
-                  {i.profile_photo_url && (
-                    <img src={i.profile_photo_url} alt="" className="w-full h-full object-cover" />
-                  )}
-                </div>
+                <Photo src={i.profile_photo_url} alt="" className="w-12 h-12 rounded-full shrink-0" />
                 <div className="text-right">
                   <span className="font-display text-xl font-bold text-ink">
                     {i.average_rating > 0 ? i.average_rating.toFixed(1) : "—"}

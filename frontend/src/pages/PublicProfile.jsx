@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import client from "../api/client.js";
+import Photo from "../components/Photo.jsx";
 
 export default function PublicProfile() {
   const { slug } = useParams();
@@ -24,11 +25,7 @@ export default function PublicProfile() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="bg-white border border-rule rounded-3xl shadow-sm p-8 flex flex-col sm:flex-row gap-6">
-        <div className="w-28 h-28 rounded-full bg-paper overflow-hidden shrink-0">
-          {profile.profile_photo_url && (
-            <img src={profile.profile_photo_url} alt={profile.full_name} className="w-full h-full object-cover" />
-          )}
-        </div>
+        <Photo src={profile.profile_photo_url} alt={profile.full_name} className="w-28 h-28 rounded-full shrink-0" />
         <div className="flex-1">
           <h1 className="text-3xl text-ink">{profile.full_name}</h1>
           <p className="text-sm mt-1.5">
@@ -90,7 +87,7 @@ export default function PublicProfile() {
         <Section title="Gallery">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {profile.gallery.map((url) => (
-              <img key={url} src={url} alt="" className="aspect-square object-cover bg-paper rounded-2xl" />
+              <Photo key={url} src={url} alt="" className="aspect-square rounded-2xl" />
             ))}
           </div>
         </Section>

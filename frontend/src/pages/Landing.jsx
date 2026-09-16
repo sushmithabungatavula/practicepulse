@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Photo from "../components/Photo.jsx";
 
 const HERO_CHECKS = [
   "Anonymous feedback",
@@ -119,15 +120,15 @@ export default function Landing() {
         </div>
 
         <div className="relative h-[420px] sm:h-[480px] hidden sm:block">
-          <img
+          <Photo
             src="https://images.pexels.com/photos/2280200/pexels-photo-2280200.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Silhouette of a yogi in a dynamic pose at golden hour"
-            className="absolute top-0 left-8 w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover shadow-2xl border-8 border-paper"
+            className="absolute top-0 left-8 w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl border-8 border-paper"
           />
-          <img
+          <Photo
             src="https://images.pexels.com/photos/8436589/pexels-photo-8436589.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Small group practicing yoga together in a sunlit studio"
-            className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 object-cover shadow-2xl border-8 border-paper"
+            className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 shadow-2xl border-8 border-paper"
             style={{ borderRadius: "46% 54% 60% 40% / 50% 45% 55% 50%" }}
           />
           <div
@@ -151,7 +152,7 @@ export default function Landing() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 w-full">
           {MODALITIES.map((m) => (
             <div key={m.name} className="bg-white rounded-[22px] overflow-hidden border border-rule text-left">
-              <img src={m.photo} alt={m.alt} className="w-full h-32 object-cover" />
+              <Photo src={m.photo} alt={m.alt} className="w-full h-32" />
               <div className="px-4 pt-4 pb-5">
                 <span className="text-[15px] font-semibold text-ink">{m.name}</span>
               </div>
@@ -196,10 +197,10 @@ export default function Landing() {
 
         <div className="bg-white rounded-3xl p-5 sm:p-6 flex flex-col gap-4 shadow-2xl">
           <div className="flex items-center gap-3">
-            <img
+            <Photo
               src="https://images.pexels.com/photos/4498516/pexels-photo-4498516.jpeg?auto=compress&cs=tinysrgb&w=200"
               alt="Portrait of instructor Sushmitha B."
-              className="w-11 h-11 rounded-full object-cover"
+              className="w-11 h-11 rounded-full"
             />
             <div className="flex flex-col">
               <span className="text-[13px] font-semibold text-ink">Sushmitha B. · Yoga</span>
@@ -233,7 +234,7 @@ export default function Landing() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full mt-6">
           {ARTICLES.map((a) => (
             <div key={a.title} className="bg-white border border-rule rounded-[22px] overflow-hidden text-left">
-              <img src={a.photo} alt={a.alt} className="w-full h-[170px] object-cover" />
+              <Photo src={a.photo} alt={a.alt} className="w-full h-[170px]" />
               <div className="p-5 flex flex-col gap-2.5">
                 <span className="text-xs text-ink-faint font-semibold">{a.tag}</span>
                 <h3 className="text-[17px] font-semibold leading-snug text-ink">{a.title}</h3>
