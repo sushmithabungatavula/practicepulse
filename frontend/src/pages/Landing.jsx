@@ -1,116 +1,370 @@
 import { Link } from "react-router-dom";
 
-const SAMPLE_ROWS = [
-  { label: "Recommend rate", value: "92%" },
-  { label: "Returning students", value: "61%" },
-  { label: "Engagement score", value: "84" },
+const HERO_CHECKS = [
+  "Anonymous feedback",
+  "Real BI dashboards",
+  "Verified testimonials",
+  "Built for Chicago instructors",
+];
+
+const MODALITIES = [
+  {
+    name: "Yoga",
+    photo: "https://images.pexels.com/photos/8436589/pexels-photo-8436589.jpeg?auto=compress&cs=tinysrgb&w=400",
+    alt: "People practicing yoga together in a sunlit studio",
+  },
+  {
+    name: "Meditation",
+    photo: "https://images.pexels.com/photos/4498220/pexels-photo-4498220.jpeg?auto=compress&cs=tinysrgb&w=400",
+    alt: "Person seated in a meditation pose",
+  },
+  {
+    name: "Breathwork",
+    photo: "https://images.pexels.com/photos/32847437/pexels-photo-32847437.jpeg?auto=compress&cs=tinysrgb&w=400",
+    alt: "Woman meditating outdoors under a tree canopy",
+  },
+  {
+    name: "Pilates",
+    photo: "https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=400",
+    alt: "Woman practicing pilates in a studio",
+  },
+  {
+    name: "Mindfulness",
+    photo: "https://images.pexels.com/photos/7363322/pexels-photo-7363322.jpeg?auto=compress&cs=tinysrgb&w=400",
+    alt: "Group meditating outdoors at sunrise",
+  },
+];
+
+const QUALITY_CHECKS = [
+  "QR-code feedback collection",
+  "Monthly trend & NPS tracking",
+  "Verified public reputation profile",
+  "Admin moderation built in",
+];
+
+const DEMO_STATS = [
+  { value: "4.52", label: "Average rating" },
+  { value: "83%", label: "Recommend rate" },
+  { value: "56%", label: "Returning students" },
+  { value: "80.7", label: "Engagement score" },
+];
+
+const ARTICLES = [
+  {
+    tag: "Getting started",
+    title: "How to read your engagement score in five minutes",
+    photo: "https://images.pexels.com/photos/3822668/pexels-photo-3822668.jpeg?auto=compress&cs=tinysrgb&w=500",
+    alt: "Instructor assisting students in a studio",
+  },
+  {
+    tag: "Feedback",
+    title: "Turning anonymous feedback into your teaching edge",
+    photo: "https://images.pexels.com/photos/2280200/pexels-photo-2280200.jpeg?auto=compress&cs=tinysrgb&w=500",
+    alt: "Silhouette of a yogi at golden hour",
+  },
+  {
+    tag: "Reputation",
+    title: "Building a public profile students actually trust",
+    photo: "https://images.pexels.com/photos/4498516/pexels-photo-4498516.jpeg?auto=compress&cs=tinysrgb&w=500",
+    alt: "Instructor portrait, smiling",
+  },
+];
+
+const TESTIMONIALS = [
+  { stars: "★★★★★", quote: "Loved the breathing exercises and calm atmosphere.", name: "Sam K." },
+  { stars: "★★★★★", quote: "The community here is so supportive.", name: "Alex T." },
+  { stars: "★★★★☆", quote: "The meditation at the end was wonderful.", name: "Jamie R." },
 ];
 
 export default function Landing() {
   return (
-    <div>
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
-        <div>
-          <h1 className="text-5xl sm:text-6xl font-sans font-extrabold tracking-tightest text-ink leading-[0.98]">
-            Know how your classes are really landing.
+    <div className="font-warm bg-warm-cream text-warm-ink">
+      {/* Warm storefront header — intentionally distinct from the app's Navbar */}
+      <div className="flex items-center justify-between px-6 sm:px-12 lg:px-[72px] py-6 border-b border-warm-rule">
+        <Link to="/" className="flex items-center gap-2.5">
+          <span className="text-xl">🌿</span>
+          <span className="font-display text-xl font-bold">PracticePulse</span>
+        </Link>
+        <div className="hidden lg:flex gap-9 text-[15px] font-medium text-warm-soft">
+          <Link to="/">Home</Link>
+          <Link to="/directory">Directory</Link>
+          <a href="#how-it-works">How it works</a>
+          <Link to="/register">For Instructors</Link>
+        </div>
+        <div className="flex items-center gap-3.5">
+          <Link to="/login" className="hidden sm:inline text-[15px] font-medium text-warm-soft">
+            Log in
+          </Link>
+          <Link
+            to="/register"
+            className="px-5 sm:px-6 py-3 rounded-full bg-warm-accent text-white text-sm font-semibold hover:bg-warm-accent-dark transition-colors"
+          >
+            Join as instructor
+          </Link>
+        </div>
+      </div>
+
+      {/* HERO */}
+      <div className="grid lg:grid-cols-[1fr_560px] gap-10 px-6 sm:px-12 lg:px-[72px] pt-14 pb-20 items-center">
+        <div className="flex flex-col gap-5 max-w-xl">
+          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+            Welcome to PracticePulse
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl leading-[1.12] font-semibold text-[#201B15]">
+            Know how your classes are <em className="text-warm-accent not-italic italic">really</em> landing.
           </h1>
-          <p className="mt-6 text-lg text-ink-soft max-w-lg leading-relaxed">
-            PracticePulse gives independent yoga, meditation, and wellness instructors a graded
-            operating ledger: anonymous client feedback in, a professional reputation and a
-            business-intelligence dashboard out.
+          <p className="text-base leading-relaxed text-warm-soft max-w-md">
+            Anonymous client feedback, a business-intelligence dashboard, and a public reputation
+            profile — built for independent yoga, meditation, and wellness instructors.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap gap-4 mt-1.5">
             <Link
               to="/register"
-              className="stamp inline-block px-6 py-3 bg-ink text-paper font-mono text-sm uppercase tracking-wide hover:bg-ledger-red transition-colors"
+              className="px-7 py-4 rounded-full bg-warm-accent text-white text-[15px] font-semibold hover:bg-warm-accent-dark transition-colors"
             >
               Create your ledger
             </Link>
             <Link
               to="/directory"
-              className="px-6 py-3 border border-ink text-ink font-mono text-sm uppercase tracking-wide hover:bg-ink hover:text-paper transition-colors"
+              className="px-7 py-4 rounded-full bg-warm-ink text-white text-[15px] font-semibold hover:bg-black transition-colors"
             >
               Browse instructors
             </Link>
           </div>
-        </div>
-
-        <div className="bg-paper-raised border border-ink">
-          <div className="border-b border-ink px-5 py-3 flex items-baseline justify-between">
-            <span className="font-mono text-[11px] uppercase tracking-wide text-ink-soft">
-              Sample instructor ledger
-            </span>
-            <span className="font-mono text-[11px] text-ink-faint">30-day period</span>
-          </div>
-          <div className="px-5 pt-5 pb-4 border-b border-rule">
-            <p className="text-[11px] uppercase tracking-wide font-mono text-ink-soft mb-1">
-              Average rating
-            </p>
-            <div className="flex items-baseline gap-2">
-              <span className="font-mono text-6xl font-bold text-ink" data-numeral>
-                4.8
-              </span>
-              <span className="font-mono text-lg text-ink-faint">/5</span>
-              <span className="stamp ml-auto text-[11px] font-mono uppercase tracking-wide border border-ledger-red text-ledger-red px-2 py-0.5">
-                Verified
-              </span>
-            </div>
-          </div>
-          <dl className="px-5 py-2">
-            {SAMPLE_ROWS.map((row, i) => (
-              <div
-                key={row.label}
-                className={`flex items-baseline justify-between py-2.5 ${
-                  i !== SAMPLE_ROWS.length - 1 ? "border-b border-rule" : ""
-                }`}
-              >
-                <dt className="text-sm text-ink-soft">{row.label}</dt>
-                <dd className="font-mono text-lg font-semibold text-ink" data-numeral>
-                  {row.value}
-                </dd>
+          <div className="grid grid-cols-2 gap-x-7 gap-y-2.5 mt-3.5">
+            {HERO_CHECKS.map((label) => (
+              <div key={label} className="flex items-center gap-2 text-sm text-warm-soft">
+                <span className="w-[18px] h-[18px] rounded-full bg-warm-accent text-white text-[11px] flex items-center justify-center shrink-0">
+                  ✓
+                </span>
+                {label}
               </div>
             ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="border-y border-rule bg-paper-raised">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
-          <div className="divide-y divide-rule border-y border-rule">
-            <FeatureRow
-              title="Anonymous feedback"
-              body="Students scan a QR code after class and complete a short survey — no account required, done in under a minute."
-            />
-            <FeatureRow
-              title="Real business intelligence"
-              body="Automatic KPI ledger for satisfaction, retention, recommend rate, and monthly trend — no spreadsheets, no AI guesswork."
-            />
-            <FeatureRow
-              title="A reputation that compounds"
-              body="Verified testimonials and a graded rating history build a public profile worth linking from your bio."
-            />
           </div>
         </div>
-      </section>
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
-        <h2 className="text-2xl font-sans font-extrabold tracking-tightest text-ink">
-          Built for Chicago's independent wellness community
+        <div className="relative h-[420px] sm:h-[480px] hidden sm:block">
+          <img
+            src="https://images.pexels.com/photos/2280200/pexels-photo-2280200.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Silhouette of a yogi in a dynamic pose at golden hour"
+            className="absolute top-0 left-8 w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover shadow-2xl border-8 border-warm-cream"
+          />
+          <img
+            src="https://images.pexels.com/photos/8436589/pexels-photo-8436589.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Small group practicing yoga together in a sunlit studio"
+            className="absolute bottom-0 right-0 w-56 h-56 sm:w-72 sm:h-72 object-cover shadow-2xl border-8 border-warm-cream"
+            style={{ borderRadius: "46% 54% 60% 40% / 50% 45% 55% 50%" }}
+          />
+          <div
+            className="absolute bottom-14 left-0 w-44 h-44 rounded-full"
+            style={{ background: "linear-gradient(200deg, #F1D9A8, #DDAF6C)" }}
+          />
+          <div className="absolute top-[46%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white flex items-center justify-center text-center p-3.5 shadow-xl z-10">
+            <span className="font-display text-xs font-bold leading-snug text-[#201B15]">
+              Every rating tells a story
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* MODALITY CARDS */}
+      <div className="px-6 sm:px-12 lg:px-[72px] pt-2 pb-20 flex flex-col items-center gap-2.5 text-center">
+        <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+          Built for every modality
+        </span>
+        <h2 className="font-display text-3xl font-semibold mb-7">Practices we support</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 w-full">
+          {MODALITIES.map((m) => (
+            <div key={m.name} className="bg-white rounded-[22px] overflow-hidden border border-warm-rule text-left">
+              <img src={m.photo} alt={m.alt} className="w-full h-32 object-cover" />
+              <div className="px-4 pt-4 pb-5">
+                <span className="text-[15px] font-semibold">{m.name}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* DARK QUALITY SECTION */}
+      <div
+        id="how-it-works"
+        className="bg-warm-forest px-6 sm:px-12 lg:px-[72px] py-20 grid lg:grid-cols-[1fr_520px] gap-14 items-center"
+      >
+        <div className="flex flex-col gap-5 text-[#EDE6D5]">
+          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+            Why instructors switch
+          </span>
+          <h2 className="font-display text-3xl font-semibold text-white leading-snug">
+            We give you the full picture, not just a star rating.
+          </h2>
+          <p className="text-[15px] leading-relaxed text-[#C9C1AF] max-w-md">
+            PracticePulse turns scattered feedback into an operating habit — a dashboard you
+            actually check, not a review site you hope someone visits.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-3.5 mt-2">
+            {QUALITY_CHECKS.map((label) => (
+              <div key={label} className="flex items-start gap-2.5 text-sm text-[#EDE6D5]">
+                <span className="w-5 h-5 rounded-md bg-warm-accent text-white text-xs flex items-center justify-center shrink-0 mt-px">
+                  ✓
+                </span>
+                {label}
+              </div>
+            ))}
+          </div>
+          <Link
+            to="/directory"
+            className="self-start mt-3 px-7 py-3.5 rounded-full bg-warm-accent text-white text-[15px] font-semibold hover:bg-warm-accent-dark transition-colors"
+          >
+            See a sample dashboard
+          </Link>
+        </div>
+
+        <div className="bg-white rounded-3xl p-5 sm:p-6 flex flex-col gap-4 shadow-2xl">
+          <div className="flex items-center gap-3">
+            <img
+              src="https://images.pexels.com/photos/4498516/pexels-photo-4498516.jpeg?auto=compress&cs=tinysrgb&w=200"
+              alt="Portrait of instructor Sushmitha B."
+              className="w-11 h-11 rounded-full object-cover"
+            />
+            <div className="flex flex-col">
+              <span className="text-[13px] font-semibold">Sushmitha B. · Yoga</span>
+              <span className="text-[11px] text-warm-faint">Lincoln Park, Chicago</span>
+            </div>
+            <span className="ml-auto text-[11px] font-bold text-warm-accent bg-[#FCE8DD] px-2.5 py-1 rounded-full">
+              LIVE DEMO
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {DEMO_STATS.map((s) => (
+              <div key={s.label} className="bg-warm-cream rounded-2xl p-4">
+                <span className="font-display text-[26px] font-bold text-[#201B15]">{s.value}</span>
+                <div className="text-xs text-warm-faint mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FROM THE JOURNAL */}
+      <div className="px-6 sm:px-12 lg:px-[72px] pt-20 pb-2 flex flex-col gap-2.5">
+        <div className="flex items-end justify-between flex-wrap gap-4">
+          <div className="flex flex-col gap-2.5">
+            <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+              From the journal
+            </span>
+            <h2 className="font-display text-3xl font-semibold">Resources for running your practice</h2>
+          </div>
+          <span className="text-sm font-semibold text-warm-accent">View all →</span>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full mt-6">
+          {ARTICLES.map((a) => (
+            <div key={a.title} className="bg-white border border-warm-rule rounded-[22px] overflow-hidden text-left">
+              <img src={a.photo} alt={a.alt} className="w-full h-[170px] object-cover" />
+              <div className="p-5 flex flex-col gap-2.5">
+                <span className="text-xs text-warm-faint font-semibold">{a.tag}</span>
+                <h3 className="text-[17px] font-semibold leading-snug">{a.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* TESTIMONIALS */}
+      <div className="px-6 sm:px-12 lg:px-[72px] py-20 flex flex-col items-center gap-2.5 text-center">
+        <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">
+          Cultivating growth, grace &amp; gratitude
+        </span>
+        <h2 className="font-display text-3xl font-semibold mb-1.5 max-w-xl">
+          What students are saying (sample demo data)
         </h2>
-        <p className="text-ink-soft mt-3">
-          Yoga instructors, meditation guides, breathwork coaches, Pilates teachers, and
-          mindfulness educators — one ledger to collect feedback and grow a reputation.
-        </p>
-      </section>
-    </div>
-  );
-}
+        <div className="grid sm:grid-cols-3 gap-5 w-full mt-6">
+          {TESTIMONIALS.map((t) => (
+            <div key={t.name} className="bg-white border border-warm-rule rounded-[22px] p-6 text-left flex flex-col gap-3.5">
+              <span className="text-xl text-warm-accent">{t.stars}</span>
+              <p className="text-sm leading-relaxed text-warm-soft m-0">"{t.quote}"</p>
+              <span className="text-[13px] font-semibold">— {t.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
-function FeatureRow({ title, body }) {
-  return (
-    <div className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-8 py-6">
-      <h3 className="font-mono text-sm font-bold uppercase tracking-wide text-ink">{title}</h3>
-      <p className="text-sm text-ink-soft leading-relaxed max-w-md">{body}</p>
+      {/* CTA BANNER */}
+      <div className="mx-6 sm:mx-12 lg:mx-[72px] mb-20 bg-warm-forest rounded-[28px] px-8 sm:px-16 py-12 flex flex-col sm:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col gap-2.5 max-w-lg text-center sm:text-left">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-white">
+            Ready to see how your classes are really landing?
+          </h2>
+          <p className="text-sm text-[#C9C1AF]">
+            Join independent instructors across Chicago already collecting feedback with PracticePulse.
+          </p>
+        </div>
+        <Link
+          to="/register"
+          className="px-8 py-4 rounded-full bg-warm-accent text-white text-[15px] font-semibold whitespace-nowrap hover:bg-warm-accent-dark transition-colors"
+        >
+          Get started free
+        </Link>
+      </div>
+
+      {/* MAP + FORM */}
+      <div className="px-6 sm:px-12 lg:px-[72px] pb-20 grid lg:grid-cols-[1fr_420px] gap-6">
+        <div
+          className="rounded-3xl h-80 flex items-center justify-center text-warm-soft text-[13px] font-semibold tracking-wide"
+          style={{ background: "linear-gradient(135deg, #E7DCC3, #D8C9A6)" }}
+        >
+          MAP PLACEHOLDER — CHICAGO, IL
+        </div>
+        <div className="bg-white border border-warm-rule rounded-3xl p-8 flex flex-col gap-3.5">
+          <span className="text-[13px] font-bold tracking-wider text-warm-accent uppercase">Stay in touch</span>
+          <h3 className="font-display text-xl font-semibold">Get notified when we add your neighborhood</h3>
+          <input
+            type="text"
+            placeholder="Your name"
+            className="h-12 rounded-xl border border-warm-rule bg-warm-cream px-4 text-sm focus:outline-none focus:border-warm-accent"
+          />
+          <input
+            type="email"
+            placeholder="Email address"
+            className="h-12 rounded-xl border border-warm-rule bg-warm-cream px-4 text-sm focus:outline-none focus:border-warm-accent"
+          />
+          <button className="text-center py-3.5 rounded-full bg-warm-accent text-white text-sm font-semibold hover:bg-warm-accent-dark transition-colors">
+            Notify me
+          </button>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="bg-warm-forest px-6 sm:px-12 lg:px-[72px] pt-14 pb-9 flex flex-col gap-9">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8">
+          <div className="flex flex-col gap-3">
+            <span className="font-display text-xl font-bold text-white">🌿 PracticePulse</span>
+            <span className="text-[13px] text-[#A9A08E] max-w-xs leading-relaxed">
+              An operating ledger for independent wellness instructors, built for Chicago's practice
+              community.
+            </span>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
+            <span className="text-white font-semibold mb-1">Product</span>
+            <Link to="/directory">Directory</Link>
+            <Link to="/login">Dashboard</Link>
+            <Link to="/register">Join</Link>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
+            <span className="text-white font-semibold mb-1">Company</span>
+            <span>About</span>
+            <span>Contact</span>
+            <span>Admin</span>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[13px] text-[#C9C1AF]">
+            <span className="text-white font-semibold mb-1">Chicago, IL</span>
+            <span>hello@practicepulse.app</span>
+          </div>
+        </div>
+        <div className="border-t border-white/10 pt-5 text-xs text-warm-faint">
+          © 2026 PracticePulse. Demo content and photography are sample/stock placeholders. Photos
+          via Pexels.
+        </div>
+      </div>
     </div>
   );
 }

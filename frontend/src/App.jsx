@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Landing from "./pages/Landing.jsx";
@@ -13,9 +13,12 @@ import Directory from "./pages/Directory.jsx";
 import Admin from "./pages/Admin.jsx";
 
 export default function App() {
+  const location = useLocation();
+  const isLanding = location.pathname === "/";
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {!isLanding && <Navbar />}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -51,9 +54,11 @@ export default function App() {
           />
         </Routes>
       </main>
-      <footer className="border-t border-rule py-6 text-center text-xs font-mono text-ink-faint">
-        PracticePulse — an operating ledger for independent wellness instructors
-      </footer>
+      {!isLanding && (
+        <footer className="border-t border-rule py-6 text-center text-xs font-mono text-ink-faint">
+          PracticePulse — an operating ledger for independent wellness instructors
+        </footer>
+      )}
     </div>
   );
 }

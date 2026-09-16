@@ -34,10 +34,25 @@ export default {
           "red-soft": "#F4E4DF",
           black: "#141311",
         },
+        // Scoped to the public Landing page only (see Landing.jsx) — an
+        // intentional, separate "storefront" palette that does not touch
+        // the app's Ledger design system used everywhere past sign-in.
+        warm: {
+          cream: "#FBF6ED",
+          accent: "#E2522C",
+          "accent-dark": "#C4562C",
+          forest: "#14302A",
+          ink: "#201B15",
+          soft: "#6B6255",
+          faint: "#9A9186",
+          rule: "#EFE4D2",
+        },
       },
       fontFamily: {
         sans: ["Archivo", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
+        display: ["'Playfair Display'", "Georgia", "serif"],
+        warm: ["Poppins", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.04em",

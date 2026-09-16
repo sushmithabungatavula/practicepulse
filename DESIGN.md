@@ -78,6 +78,17 @@ Ledger's broader legibility across a mostly task-first (Operate-mode) app.
 - Monospace numerals carry the display weight typically given to a display serif
 - A hand-drawn "stamp" motif (rotated border, circled grade) is the system's signature interaction
 
+**Exception: the public Landing page (`/`).** On 2026-09-16 the user explicitly asked, after being
+told this reverses the Ledger direction, for the public marketing page specifically to match a
+pasted reference screenshot — a warm-cream, terracotta-accent, forest-green, serif-display
+template. That page (`frontend/src/pages/Landing.jsx`) runs on its own separate `warm.*` Tailwind
+tokens and `font-display`/`font-warm` faces (Playfair Display + Poppins), defined alongside but
+never merged into the tokens above, and renders its own header/footer instead of the shared
+`Navbar`/app footer. Every other route — including the instant a visitor clicks "Log in" or "Join"
+from that page — is on The Ledger as documented below. Do not extend the warm palette to any other
+route without the same kind of explicit, informed override; do not quietly migrate The Ledger
+toward warm tones because the Landing page sits next to it.
+
 ## Colors
 
 Near-monochrome and paper-based, deliberately cool rather than warm/cream, with exactly one
