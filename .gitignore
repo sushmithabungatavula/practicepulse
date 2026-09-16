@@ -1,9 +1,7 @@
 # Backend
 backend/venv/
-backend/__pycache__/
-backend/app/__pycache__/
-backend/app/**/__pycache__/
-backend/*.db
+**/__pycache__/
+*.db
 backend/.env
 
 # Frontend
@@ -12,3 +10,5 @@ frontend/dist/
 
 # OS
 .DS_Store
+.vercel
+.env*.local

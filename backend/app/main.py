@@ -27,7 +27,6 @@ app.include_router(admin.router)
 app.include_router(public.router)
 
 
-@app.on_event("startup")
 def seed_admin() -> None:
     db = SessionLocal()
     try:
@@ -44,6 +43,11 @@ def seed_admin() -> None:
             db.commit()
     finally:
         db.close()
+
+
+# Run at import time (not via FastAPI's startup event) so it executes reliably
+# on serverless platforms, where lifespan events aren't always supported.
+seed_admin()
 
 
 @app.get("/api/health")
